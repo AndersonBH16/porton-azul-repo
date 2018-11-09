@@ -51,15 +51,13 @@ let contador_productos = 0;
 var id_producto;
 var cantidad;
 
-var lista_pedido = [];
-
 $('.tabla_menu_pedido').on('click','button.pedir' ,function(){
     contador_productos = contador_productos +1;
     $(this).removeClass("btn-success pedir");
     $(this).addClass("btn-default");
     $(this).text("Ya Pedido");
-    id_producto = $(this).attr("id");    
-    
+    id_producto = $(this).attr("id");
+
     var datos_enviar = {"id_producto" : id_producto};
     
     $.ajax({
@@ -73,45 +71,30 @@ $('.tabla_menu_pedido').on('click','button.pedir' ,function(){
             var precio = respuesta["precio"];            
             $('.descripcionPedido').append(
                 '<div id="'+id_producto+'" class="row" style="padding:5px 15px">'+
-                    '<!-- Descripción del producto -->'+	          
-                    '<div class="col-xs-6" style="padding-right:0px">'+	          
-                        '<div class="input-group">'+	              
-                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" value="'+id_producto+'"><i class="fa fa-times"></i></button></span>'+
+                    '<!-- Descripción del producto -->'+
+                    '<div class="col-xs-6" style="padding-right:0px">'+
+                        '<div class="input-group">'+
+                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto productoId" value="'+id_producto+'"><i class="fa fa-times"></i></button></span>'+
                             '<input type="text" class="form-control nuevaDescripcionProducto" name="agregarProducto" value="'+nombre_producto+'" readonly required>'+
-                            '<input type="text" class="idpro" name="txt_idProducto" value="'+id_producto+'" readonly>'+
                         '</div>'+
                     '</div>'+
                     '<!-- Cantidad del producto -->'+
-                    '<div class="col-xs-3">'+	            
-//                        '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
-                        '<input type="number" class="form-control nuevaCantidadProducto" min="1" value="1" name="txt_cantidad">'+
+                    '<div class="col-xs-3">'+
+    //                        '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
+                        '<input type="number" class="form-control nuevaCantidadProducto productoCantidad" min="1" value="1" name="txt_cantidad">'+
                     '</div>' +
                     '<!-- Precio del producto -->'+
                     '<div class="col-xs-3 precioProducto" style="padding-left:0px">'+
                         '<div class="input-group">'+
-                            '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+	                 
-                            '<input type="text" class="form-control precioFinalProducto" precioReal="'+precio+'" name="txt_precioProducto" value="'+precio+'" readonly required>'+	 
-                        '</div>'+	             
+                            '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+                            '<input type="text" class="form-control precioFinalProducto" precioReal="'+precio+'" name="txt_precioProducto" value="'+precio+'" readonly required>'+
+                        '</div>'+
                     '</div>'+
-	        '</div>'
+                '</div>'
             );
-//            var idProd = $('.quitarProducto').attr("id");
-//            alert("poo:"+idProd);
-//            var cant = $('.nuevaCantidadProducto').val();
-//            alert("poo:"+cant);
-            alert("Van: "+contador_productos+" productos");
-            //SUMANDO LOS PRECIOS            
-            //listarProductos(id_producto, nombre_producto, precio);
             sumarPreciosProductosSeleccionados();
-            alert("El id del producto seleccionado es: "+id_producto);
             cantidad = $('.nuevaCantidadProducto').val();
-            alert("La cantidad es: "+cantidad);
-            lista_pedido.push([id_producto,cantidad]);
-//            
-//            
-//            contarProductos(contador_productos);
-//            agregarImpuesto();
-        }        
+        }
     });    
 });
 
@@ -199,10 +182,33 @@ function sumarPreciosProductosSeleccionados(){
 $('#crearVenta').on('click', function(){
     var lista_pedido = [];
     var ped_id_producto = $('.quitarProducto');
-    
-    for(var i=0; i<contador_productos; i++){    
-        alert("El id del producto es: "+$(ped_id_producto[i]).val());
-    }    
+
+    //Para insertar en tabla Pedido
+    var idMozo = $("#seleccioneEmpleado").val();
+    var idMesa = $("#seleccioneMesa").val();
+    var detallePedido = $("#detalle_pedido").val();
+    var total = $("#totalPrecioProducto").val();
+    var datos_pedido = {
+        "pedido_id_mozo": idMozo,
+        "pedido_id_mesa": idMesa,
+        "pedido_detalle": detallePedido,
+        "pedido_total": total
+    };
+
+    //Para insertar en tabla Pedido_Producto
+    debugger;
+    var arrayProductosId = $(".productoId");
+    var arrayProductosCantidad = $(".productoCantidad");
+    var cantidadFilas = arrayProductosId.length;
+    var datos_pedido_producto = [];
+    for(var i = 0; i < cantidadFilas; i++){
+        datos_pedido_producto.push({
+            "producto_id" : arrayProductosId[i]["value"],
+            "producto_cantidad": arrayProductosCantidad[i]["value"]
+        });
+        console.log("pedido_producto[" + (i + 1) + "]:", datos_pedido_producto[i]);
+    }
+    console.log("Final-pedido_producto:", datos_pedido_producto);
 });
 //    
 //        alert("is: "+id_producto);
