@@ -132,10 +132,6 @@
                             <button id="crearVenta" type="submit" class="btn btn-primary pull-right" name="btn_enviarPedido">Enviar Pedido</button>
                         </div>
                     </form>
-                    <?php
-                        $crearPedido = new PedidoControlador();
-                        $crearPedido->ctrInsertarPedido();                        
-                    ?>
                 </div>
             </div>
         </div>
