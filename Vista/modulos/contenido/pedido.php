@@ -83,8 +83,7 @@
                                             <label for="llevar">&nbsp;&nbsp;&nbsp;LLevar</label>
                                         </div>
                                     </div>
-                                </div>
-                                
+                                </div>                                
                                 <!--LISTA DE PEDIDOS-->
                                 <div class="form-group row descripcionPedido">
                                 </div>

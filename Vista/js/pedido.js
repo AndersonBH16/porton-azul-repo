@@ -70,11 +70,11 @@ $('.tabla_menu_pedido').on('click','button.pedir' ,function(){
             var nombre_producto = respuesta["nombre_producto"];
             var precio = respuesta["precio"];            
             $('.descripcionPedido').append(
-                '<div id="'+id_producto+'" class="row" style="padding:5px 15px">'+
+                '<div class="row" style="padding:5px 15px">'+
                     '<!-- Descripción del producto -->'+
                     '<div class="col-xs-6" style="padding-right:0px">'+
                         '<div class="input-group">'+
-                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto productoId" value="'+id_producto+'"><i class="fa fa-times"></i></button></span>'+
+                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto productoId" id="'+id_producto+'" value="'+id_producto+'"><i class="fa fa-times"></i></button></span>'+
                             '<input type="text" class="form-control nuevaDescripcionProducto" name="agregarProducto" value="'+nombre_producto+'" readonly required>'+
                         '</div>'+
                     '</div>'+
@@ -138,8 +138,6 @@ $('.formularioPedido').on('click', 'button.quitarProducto', function(){
     $('button.recuperarBoton[id="'+id_producto+'"]').html('Pedir&nbsp;&nbsp;&nbsp;'+icono);
     
     sumarPreciosProductosSeleccionados();
-    lista_productos_seleccionados.pop(id_producto);
-    lista_cantidades_seleccionadas.pop();
 //    agregarImpuesto();
 });
 
@@ -148,8 +146,6 @@ var precioFinalProducto;
 $('.formularioPedido').on('change','input.nuevaCantidadProducto', function(){
     //var precio = $(this).parent().parent().children(".precioProducto").children().children(".precioFinalUnidad");
     cantidad = $(this).val();
-    var id_esto = $(this).parent().parent().attr("id");
-    alert("Ahora la cantidad del id:"+id_esto+"es:"+cantidad);
     var precioReal = $(this).parent().parent().children(".precioProducto").children().children(".precioFinalProducto").attr("precioReal");
     
     precioFinalProducto = cantidad * precioReal;
@@ -180,36 +176,99 @@ function sumarPreciosProductosSeleccionados(){
 
 //
 $('#crearVenta').on('click', function(){
-    var lista_pedido = [];
-    var ped_id_producto = $('.quitarProducto');
-
     //Para insertar en tabla Pedido
+    
     var idMozo = $("#seleccioneEmpleado").val();
     var idMesa = $("#seleccioneMesa").val();
+    var llevar = $('input:radio[name=rd_llevar]:checked').val();
     var detallePedido = $("#detalle_pedido").val();
     var total = $("#totalPrecioProducto").val();
     var datos_pedido = {
         "pedido_id_mozo": idMozo,
         "pedido_id_mesa": idMesa,
+        "pedido_llevar": llevar,
         "pedido_detalle": detallePedido,
         "pedido_total": total
     };
+    
+    var arrayProductosId = $('#.productoId'); //obtiene todos los elementos con la clase .productoId    
+    var arrayProductosCantidad = $(".productoCantidad"); //obtiene todos los elementos de la clase .productoCantidades
+    var cantidadFilas = arrayProductosId.length; //para obtener el numero de filas a insertar
+    var array_pedido_producto = []; //para agrupar productos y respectivas cantidades
+    
+    for(var i=0; i<cantidadFilas; i++){
+        array_pedido_producto.push({
+            "producto_id" : arrayProductosCantidad[i]["value"],
+            "producto_cantidad" : arrayProductosCantidad[i]["value"]
+        });
+    }
+    
+    $.ajax({
+        url:"AjaxControladores/pedido.ajax.controlador.php",
+      	method: "POST",
+      	data: datos_pedido,
+      	dataType:"json",
+      	success:function(respuesta_pedido){
+            //acá me retorna el id del ultimo pedido insertado para insertar en pedido_producto
+            debugger;
+            alert("id ultimo pedido: "+respuesta_pedido);
+            var idUltimoPedido = respuesta_pedido;
+            var datos_pedido_producto={
+                "pp_id_ultimoPedido" : idUltimoPedido,
+                "pp_datos_pedido_producto" :array_pedido_producto
+            };
+            debugger;
+            $.ajax({
+                url:"",
+                method:"AjaxControladores/pedido.ajax.controlador.php",
+                data: datos_pedido_producto,
+                success:function(respuesta_pedido_producto){                    
+                    if(respuesta_pedido_producto === "ok"){
+                        swal({
+                            icon: "success",
+                            type: "success",
+                            title: "Pedido enviado con éxito",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }else{
+                        swal({
+                            icon: "error",
+                            type: "error",
+                            title: "El Pedido no se ha podido enviar !",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }     
+                }
+            });
+        }
+    });
+   
+   
 
     //Para insertar en tabla Pedido_Producto
-    debugger;
-    var arrayProductosId = $(".productoId");
-    var arrayProductosCantidad = $(".productoCantidad");
-    var cantidadFilas = arrayProductosId.length;
-    var datos_pedido_producto = [];
-    for(var i = 0; i < cantidadFilas; i++){
-        datos_pedido_producto.push({
-            "producto_id" : arrayProductosId[i]["value"],
-            "producto_cantidad": arrayProductosCantidad[i]["value"]
-        });
-        console.log("pedido_producto[" + (i + 1) + "]:", datos_pedido_producto[i]);
-    }
-    console.log("Final-pedido_producto:", datos_pedido_producto);
+    //debugger;
+//    var arrayProductosId = $(".productoId");
+//    var arrayProductosCantidad = $(".productoCantidad");
+//    var cantidadFilas = arrayProductosId.length;
+//    var datos_pedido_producto = [];
+//    for(var i = 0; i < cantidadFilas; i++){
+//        datos_pedido_producto.push({
+//            "producto_id" : arrayProductosId[i]["value"],
+//            "producto_cantidad": arrayProductosCantidad[i]["value"]
+//        });
+//        console.log("pedido_producto[" + (i + 1) + "]:", datos_pedido_producto[i]);
+//    }
+//    console.log("Final-pedido_producto:", datos_pedido_producto);
+
+
 });
+
+
+
+
+
 //    
 //        alert("is: "+id_producto);
 //        

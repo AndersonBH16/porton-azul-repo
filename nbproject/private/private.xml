@@ -5,25 +5,20 @@
             <url>Vista/js/pedido.js</url>
             <bookmark id="1">
                 <name/>
-                <line>80</line>
+                <line>0</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/gestion_usuario.modelo.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/personal.ajax.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/personal.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/personal.modelo.php</file>
             <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/gestion_usuario.ajax.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/menu.ajax.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/personal.js</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/gestion_usuario.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/personal_pedido.ajax.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/modulos/contenido/personal.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/personal.datatable.ajax.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/mesa.js</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/pedido.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/pedido.js</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/usuario.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/modulos/contenido/pedido.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/pedido.ajax.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/pedido.modelo.php</file>
         </group>
     </open-files>
 </project-private>
