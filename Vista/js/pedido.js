@@ -171,13 +171,12 @@ function sumarPreciosProductosSeleccionados(){
         sumaTotalPrecio += arraySumaProducto[i];
     }
     
-    $('#totalPrecioProducto').val(sumaTotalPrecio);
+    $('#totalPrecioProducto').val(sumaTotalPrecio.toFixed(2));
 }
 
 //
 $('#crearVenta').on('click', function(){
     //Para insertar en tabla Pedido
-    
     var idMozo = $("#seleccioneEmpleado").val();
     var idMesa = $("#seleccioneMesa").val();
     var llevar = $('input:radio[name=rd_llevar]:checked').val();
@@ -191,18 +190,11 @@ $('#crearVenta').on('click', function(){
         "pedido_total": total
     };
     
-    var arrayProductosId = $('#.productoId'); //obtiene todos los elementos con la clase .productoId    
+    var arrayProductosId = $(".productoId"); //obtiene todos los elementos con la clase .productoId
     var arrayProductosCantidad = $(".productoCantidad"); //obtiene todos los elementos de la clase .productoCantidades
     var cantidadFilas = arrayProductosId.length; //para obtener el numero de filas a insertar
     var array_pedido_producto = []; //para agrupar productos y respectivas cantidades
-    
-    for(var i=0; i<cantidadFilas; i++){
-        array_pedido_producto.push({
-            "producto_id" : arrayProductosCantidad[i]["value"],
-            "producto_cantidad" : arrayProductosCantidad[i]["value"]
-        });
-    }
-    
+
     $.ajax({
         url:"AjaxControladores/pedido.ajax.controlador.php",
       	method: "POST",
@@ -210,125 +202,43 @@ $('#crearVenta').on('click', function(){
       	dataType:"json",
       	success:function(respuesta_pedido){
             //acá me retorna el id del ultimo pedido insertado para insertar en pedido_producto
-            debugger;
-            alert("id ultimo pedido: "+respuesta_pedido);
             var idUltimoPedido = respuesta_pedido;
-            var datos_pedido_producto={
-                "pp_id_ultimoPedido" : idUltimoPedido,
-                "pp_datos_pedido_producto" :array_pedido_producto
-            };
-            debugger;
+
+            for(var i = 0; i < cantidadFilas; i++){
+                array_pedido_producto.push({
+                    "producto_id" : arrayProductosId[i]["value"],
+                    "producto_cantidad" : arrayProductosCantidad[i]["value"],
+                    "pp_id_ultimoPedido": idUltimoPedido
+                })
+            }
+
             $.ajax({
-                url:"",
-                method:"AjaxControladores/pedido.ajax.controlador.php",
-                data: datos_pedido_producto,
-                success:function(respuesta_pedido_producto){                    
-                    if(respuesta_pedido_producto === "ok"){
+                url:"AjaxControladores/pedido-producto.ajax.controlador.php",
+                method:"POST",
+                data: {
+                    misPedidos: array_pedido_producto
+                },
+                success:function(respuesta_pedido_producto){
                         swal({
                             icon: "success",
                             type: "success",
                             title: "Pedido enviado con éxito",
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 5500
                         });
-                    }else{
-                        swal({
-                            icon: "error",
-                            type: "error",
-                            title: "El Pedido no se ha podido enviar !",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }     
+                },
+                error: function(xhr, ajaxOptions, thrownError, error) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                    swal({
+                        icon: "error",
+                        type: "error",
+                        title: "El Pedido no se ha podido enviar !",
+                        showConfirmButton: false,
+                        timer: 5500
+                    });
                 }
             });
         }
     });
-   
-   
-
-    //Para insertar en tabla Pedido_Producto
-    //debugger;
-//    var arrayProductosId = $(".productoId");
-//    var arrayProductosCantidad = $(".productoCantidad");
-//    var cantidadFilas = arrayProductosId.length;
-//    var datos_pedido_producto = [];
-//    for(var i = 0; i < cantidadFilas; i++){
-//        datos_pedido_producto.push({
-//            "producto_id" : arrayProductosId[i]["value"],
-//            "producto_cantidad": arrayProductosCantidad[i]["value"]
-//        });
-//        console.log("pedido_producto[" + (i + 1) + "]:", datos_pedido_producto[i]);
-//    }
-//    console.log("Final-pedido_producto:", datos_pedido_producto);
-
-
 });
-
-
-
-
-
-//    
-//        alert("is: "+id_producto);
-//        
-//	var listaProductos = [];
-//        
-//        alert("id: "+id_producto+"desc:  " +descripcion + "cant: "+ cantidad + "prec: "+precioFinalProducto);
-//        
-////	for(var i = 0; i < descripcion.length; i++){
-////            listaProductos.push({   "id" : $(descripcion[i]).attr("id"), 
-////                                    "descripcion" : $(descripcion[i]).val(),
-////                                    "cantidad" : $(cantidad[i]).val(),
-////                                    "precio" : $(precio[i]).attr("precioReal")});
-////	}
-////	$("#lista_productos").val(JSON.stringify(listaProductos));
-//}
-
-//FUNCIÓN AGREGAR IMPUESTO
-//function agregarImpuesto(){
-//    var impuesto = $('#impuesto').val();
-//    var totalPrecioProducto = $('#totalPrecioProducto').val();    
-//    var montoImpuesto = (impuesto/100)*totalPrecioProducto;
-//    console.log("monto provisional:"+montoImpuesto);
-//    var montoTotal = Number(montoImpuesto)+Number(totalPrecioProducto);
-//    console.log("Costo Final:"+montoTotal);
-//    $('#totalPrecioProducto').val(montoTotal);
-//}
-
-
-
-
-//$('#crearVenta').on('click', function(){
-//    swal({
-//        title: '¿Enviar Pedido?',
-//        text: "You won't be able to revert this!",
-//        type: 'question',
-//        showCancelButton: true,
-//        confirmButtonColor: '#52BE80',
-//        cancelButtonColor: '#d33',
-//        confirmButtonText: 'Sí, enviar'
-//    }).then((result) => {
-//      if (result.value) {
-//        swal('Listo!','Tu pedido se ha enviado','success');
-//      }
-//    });
-//});
-
-//swal({
-//  title: 'Are you sure?',
-//  text: "You won't be able to revert this!",
-//  type: 'warning',
-//  showCancelButton: true,
-//  confirmButtonColor: '#3085d6',
-//  cancelButtonColor: '#d33',
-//  confirmButtonText: 'Yes, delete it!'
-//}).then((result) => {
-//  if (result.value) {
-//    swal(
-//      'Deleted!',
-//      'Your file has been deleted.',
-//      'success'
-//    )
-//  }
-//})

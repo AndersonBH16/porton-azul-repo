@@ -20,25 +20,26 @@
             $statement = null; 
         }
         
-        public static function mdlCrearPedidoProducto($id_pedido, $array_pedido_producto){
-            
-            $flag = false;
-            foreach ($array_pedido_producto as $key => $value) {
-                $consulta = "INSERT INTO PEDIDO_PRODUCTO(id_pedido_producto, cantidad, PEDIDO_id_pedido, PRODUCTO_id_producto) VALUES (null,'".$value["producto_cantidad"]."','$id_pedido','".$value["producto_id"]."')";
+        public static function mdlCrearPedidoProducto($array_pedido_producto){
+            foreach ($array_pedido_producto as $fila) {
+                $producto_id = $fila["producto_id"];
+                $producto_cantidad = $fila["producto_cantidad"];
+                $pedido_id = $fila["pp_id_ultimoPedido"];
+
+                $consulta = "CALL sp_crear_pedido_pedido('$producto_cantidad', '$pedido_id', '$producto_id')";
                 $statement = Conexion::Conectar()->prepare($consulta);
-                $statement->execute();
-                
-                $flag = true;
+
+                if($statement->execute()){
+                    $flag = "ok";
+                }
+                else{
+                    $flag = "error";
+                }
+                echo $flag."\n";
             }
-            
-            if($flag == true){
-                return "ok";
-            }else{                
-                return "error";
-            }
-            
+            return $flag;
             $statement->close();
-            $statement = null; 
+            $statement = null;
         }
     }
 ?>

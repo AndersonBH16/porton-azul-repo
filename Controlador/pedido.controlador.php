@@ -15,8 +15,8 @@
             return $respuesta;
         }
         
-        public static function ctrCrearPedidoProducto($id_pedido, $array_pedido_producto){
-            $respuesta = PedidoModelo::mdlCrearPedidoProducto($id_pedido, $array_pedido_producto);
+        public static function ctrCrearPedidoProducto($array_pedido_producto){
+            $respuesta = PedidoModelo::mdlCrearPedidoProducto($array_pedido_producto);
             return $respuesta;
         }
     }  
