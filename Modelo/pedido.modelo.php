@@ -2,54 +2,44 @@
     include_once 'conexion.php';
     
     class PedidoModelo{
-
-        public static function mdlMostrarPedidoProducto($tabla, $columna, $dato){
-
-        }
         
-        public static function ultimoPedidoAgregado(){
-            $consulta = "SELECT MAX(id_pedido) FROM Pedido";
+        public static function obtenerIdUltimoPedido(){
+            $consulta = "SELECT LAST_INSERT_ID()";
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
             return $statement->fetch()[0];
         }
-//        
-//        public static function mdlMostrarPedido(){
-//            $ultimo_pedido = PedidoModelo::ultimoPedidoAgregado();
-//            $consulta = "SELECT * FROM Pedido WHERE id_pedido_producto = $ultimo_pedido";
-//            $statement = Conexion::Conectar()->prepare($consulta);
-//            $statement->execute();
-//            return $statement->fetchAll();
-//            
-//            $statement->close();
-//            $statement = null;
-//        }
 //
-        public static function mdlInsertarPedido($llevar, $detalle, $id_cliente, $id_mesa){  
-            $consulta = "INSERT INTO PEDIDO(llevar, detalle,PERSONAL_PERFIL_id_personal_perfil,MESA_id_mesa) VALUES ('$llevar', '$detalle', '$id_cliente', '$id_mesa')";
+        public static function mdlCrearPedido($llevar, $detalle, $total, $id_mozo, $id_mesa){
+            $consulta = "CALL sp_crear_pedido('$llevar','$detalle','$total','$id_mozo','$id_mesa')";
             $statement = Conexion::Conectar()->prepare($consulta);
+            $statement->execute();
+            return $statement->fetch()[0];
             
-            if($statement->execute()){                
-                return "ok";
-            }else{                
-                return "error";
-            }
-                        
             $statement->close();
             $statement = null; 
         }
         
-        public static function mdlCrearPedido(){
-            $consulta = "INSERT INTO pedido_producto(id_pedido_producto, estado, cantidad, PEDIDO_id_producto, PRODUCTO_id_producto) VALUES ()";
-            $statement = Conexion::Conectar()->prepare($consulta);
+        public static function mdlCrearPedidoProducto($id_pedido, $array_pedido_producto){
             
-            if($statement->execute()){
+            $flag = false;
+            foreach ($array_pedido_producto as $key => $value) {
+                $consulta = "INSERT INTO PEDIDO_PRODUCTO(id_pedido_producto, cantidad, PEDIDO_id_pedido, PRODUCTO_id_producto) VALUES (null,'".$value["producto_cantidad"]."','$id_pedido','".$value["producto_id"]."')";
+                $statement = Conexion::Conectar()->prepare($consulta);
+                $statement->execute();
+                
+                $flag = true;
+            }
+            
+            if($flag == true){
                 return "ok";
-            }else{
+            }else{                
                 return "error";
             }
+            
+            $statement->close();
+            $statement = null; 
         }
-        
     }
 ?>
 
