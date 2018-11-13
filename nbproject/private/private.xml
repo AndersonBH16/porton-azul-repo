@@ -12,12 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/gestion_usuario.ajax.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/pedido-producto.ajax.controlador.php</file>
             <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/pedido.controlador.php</file>
             <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/pedido.js</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/usuario.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/modulos/contenido/pedido.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/pedido.ajax.controlador.php</file>
             <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/pedido.modelo.php</file>
         </group>
     </open-files>

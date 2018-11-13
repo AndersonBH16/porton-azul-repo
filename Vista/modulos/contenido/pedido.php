@@ -40,7 +40,7 @@
             <div class="col-lg-5 col-xs-12">
                 <div class="box box-success">
                     <div class="box-header with-border"></div>
-                    <form role="form" method="POST" class="formularioPedido">
+                    <div class="formularioPedido">
                         <div class="box-body">
                             <div class="box">
                                 <h4>Resumen del Pedido</h4>
@@ -128,9 +128,9 @@
                             </div>                            
                         </div>
                         <div class="box-footer">
-                            <button id="crearVenta" type="submit" class="btn btn-primary pull-right" name="btn_enviarPedido">Enviar Pedido</button>
+                            <button id="crearVenta" class="btn btn-primary pull-right" name="btn_enviarPedido">Enviar Pedido</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
