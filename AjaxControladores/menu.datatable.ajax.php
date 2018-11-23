@@ -16,7 +16,7 @@
                 $botones = '<div class=\"btn-group\"><button class=\"btn btn-warning\"><i class=\"fa fa-pencil\"></i></button><button class=\"btn btn-danger\"><i class=\"fa fa-times\"></i></button></div>';
                 $tablaMenu .= '{
                                   "item" : "'.($key+1).'",
-                                  "estado" : "'.$value["estado"].'",
+                                  "estado" : "'.$value["estado_producto"].'",
                                   "nombre_producto" : "'.$value["nombre_producto"].'",
                                   "descripcion_producto" : "'.$value["descripcion_producto"].'",
                                   "precio" : "'.$value["precio"].'",

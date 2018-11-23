@@ -27,7 +27,7 @@
                 $id_personal = $respuestaMostrarPersonal;
                 $respuestaCreacionPersonalPerfil = PersonalModelo::mdlCrearPersonalPerfil($id_personal, $id_perfil, $id_area);
                 if($respuestaCreacionPersonalPerfil == "ok"){
-                    //el swal de confirmación
+                    return 1;
                 }                
             }else{
                 echo "ERROR EN LA CREACIÓN DEL PERSONAL";
