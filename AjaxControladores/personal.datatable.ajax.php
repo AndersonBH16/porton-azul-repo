@@ -9,7 +9,14 @@
             $tablaPersonal = "";
             
             foreach($resultado_tablaPersonal as $key => $value){
-                $botones = '<div class=\"btn-group\"><button id=\"'.$value["id_personal"].'\" class=\"btn btn-warning editarPersonal\" title=\"Editar\"><i class=\"fa fa-pencil\"></i></button><button id=\"'.$value["id_personal"].'\" class=\"btn btn-danger\"><i class=\"fa fa-times eliminarPersonal\" title=\"Eliminar\"></i></button></div>';
+                $botones = '<div class=\"btn-group\">'
+                                . '<button id=\"'.$value["id_personal"].'\" class=\"btn btn-warning editarPersonal\" title=\"Editar\">'
+                                    . '<i class=\"fa fa-pencil\"></i>'
+                                . '</button>'
+                                . '<button id=\"'.$value["id_personal"].'\" class=\"btn btn-danger eliminarPersonal\" title=\"Eliminar\">'
+                                    . '<i class=\"fa fa-times\"></i>'
+                                . '</button>'
+                            . '</div>';
                 $tablaPersonal .= '{
                                   "item" : "'.($key+1).'",
                                   "dni" : "'.$value["dni_personal"].'",
