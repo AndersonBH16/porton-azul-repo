@@ -148,6 +148,7 @@
         <script src="Vista/js/mesa.js"></script>
         <script src="Vista/js/menu_restaurant.js"></script>
         <script src="Vista/js/pedido.js"></script>
+        <script src="Vista/js/cocina.js"></script>
         <script src="Vista/js/caja.js"></script>
         <script src="Vista/js/gestion_usuario.js"></script>
         <script>

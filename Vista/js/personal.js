@@ -67,41 +67,42 @@ function crearPersonal(){
         "id_area" : id_area
     };
     
-    alert("datos: "+dni+nombre+telefono+direccion+id_perfil+id_area);
     $.ajax({
         data: datos, 
         method: "POST",
         url: "AjaxControladores/personal.ajax.controlador.php",
         cache: false,
         dataType: "json",
-        success: function(){
-//             swal({
-//                    type: "success",
-//                    title: "¡El usuario "+response+" ha sido guardado correctamente!",
-//                    showConfirmButton: false                                 
-//                    }).then(function(result){
-//                        if(result.value){
-//                                window.location = "personal";
-//                        }
-//                    });
+        success: function(respuesta){
+            if(respuesta){
+                $('#modalAgregarPersonal').hide();
+                swal({
+                    type: "success",
+                    title: "¡El usuario ha sido guardado correctamente!",
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then(function(){
+                        window.location = "personal";                        
+                    });
+            }            
         }
     });    
 }
 
 $('.tabla_personal').on('click','button.editarPersonal', function(){    
     alert("Intentas Editar"+$(this).attr("id"));
-    var id_personal = $(this).attr("id");
-    
-    datos_editar = {"id_personal" : id_personal};
-    
-    $.ajax({
-        url:"AjaxControladores/personal_pedido.ajax.controlador.php",
-      	method: "POST",
-      	data: datos_editar,
-      	success:function(respuesta){
-            alert(respuesta['telefono']);
-        }
-    });
+//    var id_personal = $(this).attr("id");
+//    
+//    datos_editar = {"id_personal" : id_personal};
+//    
+//    $.ajax({
+//        url:"AjaxControladores/personal_pedido.ajax.controlador.php",
+//      	method: "POST",
+//      	data: datos_editar,
+//      	success:function(respuesta){
+//            alert(respuesta['telefono']);
+//        }
+//    });
 });
 
 $('.tabla_personal').on('click','button.eliminarPersonal', function(){

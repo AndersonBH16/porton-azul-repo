@@ -15,17 +15,20 @@
         </section>
     </div>
     <section class="content">
-        <!--TABLA DE MENU (PRODUCTOS)-->
+        <!--TABLA DE COCINA (PRODUCTOS)-->
         <div class="box">            
             <div class="box-body">
                 <div class="box-header with-border"></div>
-                <table class="table table-bordered table-striped dt-responsive tabla_menu_pedido" width="100%">
+                <table class="table table-bordered table-striped dt-responsive tabla_cocina" width="100%">
                     <thead>
                         <tr>
                             <th style="width: 10px;">N°</th>                            
-                            <th style="width: 150px;">Nombre</th>
-                            <th style="width: 350px;">Descripción</th>                            
-                            <th style="width: 30px;">Estado</th>
+                            <th style="width: 200px;">Plato</th>
+                            <th style="width: 30px;">Cantidad</th>                            
+                            <th style="width: 100px;">Detalle</th>
+                            <th style="width: 30px;">Nro. Mesa</th>
+                            <th style="width: 100px;">Mozo</th>
+                            <th style="width: 50px;">Acciones</th>
                         </tr>
                     </thead>
                 </table>           

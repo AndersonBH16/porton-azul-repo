@@ -23,11 +23,11 @@
                     foreach ($mesa as $key => $value){
                         echo '<div style="display: inline-block; margin:2%; width: 180px; height:230px; background: rgba(34, 45, 45, 0.5); padding:10px;">
                                 <input id="nro_mesa" style="font-size:18px; text-align:center; width:45px; color:#F9F902; background:rgba(64, 11, 11, 0.8); left: 0; border: none;" value="N°: '.$value["numero_mesa"].'" disabled>
-                                <a href="#">
+                                <a id="verMesa" data-toggle="modal" data-target="#modalVerDetalleMesa" title="Ver Mesa" style="cursor:pointer"> 
                                     <img class="img-responsive" src="Vista/img/contenido/mesa.png" style="width:100%; height:70%; margin:0; padding:0;">
-                                </a>\n\
+                                </a>
                                 <div clas="col-md-8">
-                                    <button class="btn btn-success" style="margin-left:23%;" value="">'.$value["estado"].'</button>
+                                    <button class="btn btn-success" style="margin-left:23%;" value="">'.$value["estado_mesa"].'</button>
                                 </div>
                              </div>';
                     }
@@ -39,5 +39,55 @@
         <button id="agregarMesa" name="btn_agregarMesa" style="border-radius: 50%; padding: 0;">
             <img class="img-responsive" src="Vista/img/contenido/agregar_mesa.png" style="border-radius: 50%;">
         </button>
+    </div>
+</div>
+<!-----------------------------------------
+MODAL PARA VER MESA
+------------------------------------------->
+<div id="modalVerDetalleMesa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" method="POST">
+                <!--=====================================
+                CABEZA DEL MODAL
+                ======================================-->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b>Mesa N°&nbsp;</b><label id="lbl_nroMesa"></label></h4>
+                </div>
+                <!--=====================================
+                CUERPO DEL MODAL
+                ======================================-->
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="pedido" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar Pedido</a>
+                            </div>
+                            <div class="col-md-6 row">
+                                <label>TOTAL:&nbsp;</label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
+                            </div>
+                        </div>
+                        <br>
+                        <table class="table table-bordered table-striped dt-responsive tabla_verDetalleMesa" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">N°</th>
+                                    <th style="width: 100px">Plato</th>
+                                    <th style="width: 150px">Cantidad</th> 
+                                    <th style="width: 100px">Mozo</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!--=====================================
+                PIE DEL MODAL
+                ======================================-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

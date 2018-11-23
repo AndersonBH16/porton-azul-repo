@@ -80,7 +80,6 @@ $('.tabla_menu_pedido').on('click','button.pedir' ,function(){
                     '</div>'+
                     '<!-- Cantidad del producto -->'+
                     '<div class="col-xs-3">'+
-    //                        '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
                         '<input type="number" class="form-control nuevaCantidadProducto productoCantidad" min="1" value="1" name="txt_cantidad">'+
                     '</div>' +
                     '<!-- Precio del producto -->'+
@@ -194,7 +193,7 @@ $('#crearVenta').on('click', function(){
     var arrayProductosCantidad = $(".productoCantidad"); //obtiene todos los elementos de la clase .productoCantidades
     var cantidadFilas = arrayProductosId.length; //para obtener el numero de filas a insertar
     var array_pedido_producto = []; //para agrupar productos y respectivas cantidades
-
+    
     $.ajax({
         url:"AjaxControladores/pedido.ajax.controlador.php",
       	method: "POST",
