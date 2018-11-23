@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>Controlador/menu.controlador.php</url>
+            <bookmark id="2">
+                <name/>
+                <line>9</line>
+                <key/>
+            </bookmark>
+        </file>
         <file>
             <url>Vista/js/pedido.js</url>
             <bookmark id="1">
@@ -12,10 +20,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/AjaxControladores/pedido-producto.ajax.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/pedido.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/pedido.js</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/pedido.modelo.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/modulos/contenido/mesas.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/mesa.modelo.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/mesa.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/mesa.js</file>
         </group>
     </open-files>
 </project-private>
