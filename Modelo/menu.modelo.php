@@ -11,7 +11,7 @@
                 $statement = Conexion::Conectar()->prepare($consulta);
                 $statement->execute();
                 return $statement->fetchAll();
-            }else{                
+            }else{
                 $consulta = "SELECT * 
                             FROM $tabla JOIN categoria_producto 
                             ON producto.categoria_producto_id_categoria_producto = categoria_producto.id_categoria_producto 

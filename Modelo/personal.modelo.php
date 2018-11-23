@@ -40,7 +40,8 @@
                      JOIN personal
                      ON personal_perfil.personal_id_personal = personal.id_personal
                      JOIN area
-                     ON personal_perfil.area_id_area = area.id_area;";
+                     ON personal_perfil.area_id_area = area.id_area
+                     ORDER BY id_personal asc;";
 
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
