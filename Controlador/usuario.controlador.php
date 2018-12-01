@@ -33,7 +33,7 @@
                         }
                         echo '<br><div class="alert alert-danger">El usuario aún no está activado</div>';
                     }else{
-                        echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+                        echo '<br><div class="alert alert-danger">Usuario no registrado</div>';
                     }
                 }            
             }            

@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     class PlantillaControlador{
         static public function ctrPlantilla(){
