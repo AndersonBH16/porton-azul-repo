@@ -4,7 +4,7 @@
     
     class MesaAjaxControlador{
         public function ctrAjaxAgregarMesa(){
-            $tabla = "Mesa";
+            $tabla = "mesa";
             $resultado = MesaModelo::agregarMesa($tabla);
             $numeroMesa = MesaModelo::devolverNumeroMesa($tabla);
             echo $numeroMesa;

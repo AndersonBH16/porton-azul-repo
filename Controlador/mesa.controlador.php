@@ -2,7 +2,7 @@
 
     class MesaControlador{
         public static function ctrMostrarMesa(){
-            $tabla = "Mesa";
+            $tabla = "mesa";
             $resultado = MesaModelo::mdlMostrarMesas($tabla);            
             return $resultado;
         }
