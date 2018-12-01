@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    verDetalleMesa();
+    
 } );
 
 
@@ -36,50 +36,48 @@ $('#agregarMesa').on('click', function(){
     agregarMesa();
 });
 
-function verDetalleMesa(){
-    $('#lbl_nroMesa').val("asdfghjklñ");
-//    $('.tabla_verMesa').DataTable({
-//    
-//        "bDeferRender": true,
-//        "sPaginationType": "full_numbers",
-//        "ajax":{        
-//            "url": "AjaxControladores/mesa.datatable.controlador.php",
-//            "type": "POST"
-//        },
-//        "columns":  [
-//                        {"data":"item"},                    
-//                        {"data":"plato"},
-//                        {"data":"cantidad"},
-//                        {"data":"detalle"},
-//                        {"data":"nro_mesa"},
-//                        {"data":"nombre_mozo"},
-//                        {"data":"acciones"}                   
-//                    ],
-//        "language":    {
-//                            "sProcessing":     "Procesando...",
-//                            "sLengthMenu":     "Mostrar _MENU_ registros",
-//                            "sZeroRecords":    "No se encontraron resultados",
-//                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-//                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-//                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-//                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-//                            "sInfoPostFix":    "",
-//                            "sSearch":         "Buscar:",
-//                            "sUrl":            "",
-//                            "sInfoThousands":  ",",
-//                            "sLoadingRecords": "Cargando...",
-//                            "oPaginate": {
-//                            "sFirst":    "Primero",
-//                            "sLast":     "Último",
-//                            "sNext":     "Siguiente",
-//                            "sPrevious": "Anterior"
-//                            },
-//                            "oAria": {
-//                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-//                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-//                            }
-//                        }
-//    });
+function verDetalleMesa(nro_mesa){
+    var datos = {"nro_mesa" : nro_mesa};
+    $('.tabla_verMesa').DataTable({        
+        "bDeferRender": true,
+        "sPaginationType": "full_numbers",
+        "ajax":{
+            "data" : datos, 
+            "url": "AjaxControladores/mesa.datatable.controlador.php",
+            "type": "POST"
+        },
+        "columns":  [
+                        {"data":"item"},                    
+                        {"data":"plato"},
+                        {"data":"cantidad"},
+                        {"data":"nombre_mozo"},
+                        {"data":"total"}                   
+                    ],
+        "language":    {
+                            "sProcessing":     "Procesando...",
+                            "sLengthMenu":     "Mostrar _MENU_ registros",
+                            "sZeroRecords":    "No se encontraron resultados",
+                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix":    "",
+                            "sSearch":         "Buscar:",
+                            "sUrl":            "",
+                            "sInfoThousands":  ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+    });
 }
 
 

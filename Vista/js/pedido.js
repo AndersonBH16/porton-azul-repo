@@ -2,8 +2,7 @@ $(document).ready(function(){
 
 } );
 
-$('.tabla_menu_pedido').DataTable({
-    
+$('.tabla_menu_pedido').DataTable({    
     "bDeferRender": true,
     "sPaginationType": "full_numbers",
     "ajax":{        
