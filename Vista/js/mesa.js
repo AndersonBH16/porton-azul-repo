@@ -37,21 +37,23 @@ $('#agregarMesa').on('click', function(){
 });
 
 function verDetalleMesa(nro_mesa){
-    var datos = {"nro_mesa" : nro_mesa};
-    $('.tabla_verMesa').DataTable({        
+    var mesa = {"nro_mesa" : nro_mesa};
+    $('#lbl_nroMesa').text('Mesa N°: ' + nro_mesa);
+    $('.tabla_verDetalleMesa').DataTable().destroy();
+    $('.tabla_verDetalleMesa').DataTable({
         "bDeferRender": true,
         "sPaginationType": "full_numbers",
         "ajax":{
-            "data" : datos, 
+            "data" : mesa,
             "url": "AjaxControladores/mesa.datatable.controlador.php",
             "type": "POST"
         },
         "columns":  [
-                        {"data":"item"},                    
+                        {"data":"item"},
                         {"data":"plato"},
                         {"data":"cantidad"},
                         {"data":"nombre_mozo"},
-                        {"data":"total"}                   
+                        {"data":"total"}
                     ],
         "language":    {
                             "sProcessing":     "Procesando...",

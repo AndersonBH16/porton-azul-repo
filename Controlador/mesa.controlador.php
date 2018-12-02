@@ -8,7 +8,7 @@
         }
         public static function ctrVerDetalleMesa($nro_mesa){
             $resultado = MesaModelo::verDetalleMesa($nro_mesa);
-            return $resultado;
+            echo $resultado;
         }
     }
   
