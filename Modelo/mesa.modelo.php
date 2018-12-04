@@ -45,10 +45,11 @@
         }
 
         public function verDetalleMesa($numeroMesa) {
-            $consulta = "SELECT producto.nombre_producto, 
-                                pedido_producto.cantidad, 
-                                personal.nombre_personal, 
-                                pedido.sub_total 
+            $consulta = "SELECT producto.nombre_producto,
+                                pedido_producto.cantidad,
+                                producto.precio,
+                                personal.nombre_personal,
+                                pedido.sub_total
                         FROM mesa
                         INNER JOIN pedido
                         ON mesa.id_mesa = pedido.MESA_id_mesa
@@ -65,20 +66,21 @@
             $statement->execute();
             $pedidos = $statement->fetchAll(PDO::FETCH_CLASS);
             $i = 1;
-            $aux = [];
+            $nPedidos = [];
             foreach ($pedidos as $pedido){
                 $datos = [
                     'item' => $i,
                     'plato' => $pedido->nombre_producto,
                     'cantidad' => $pedido->cantidad,
+                    'precio' => $pedido->precio,
                     'nombre_mozo' => $pedido->nombre_pesonal,
-                    'total' => $pedido->sub_total
+                    'sub_total'=> $pedido->sub_total
                 ];
                 $i++;
-                array_push($aux, $datos);
+                array_push($nPedidos, $datos);
             }
             $retornoPedidos = json_encode([
-                "data" => $aux
+                "data" => $nPedidos
             ]);
             return $retornoPedidos;
         }

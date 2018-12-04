@@ -65,7 +65,7 @@ MODAL PARA VER MESA
                                 <a href="pedido" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar Pedido</a>
                             </div>
                             <div class="col-md-6 row">
-                                <label>TOTAL:&nbsp;</label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
+                                <label id="totalPedido"></label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
                             </div>
                         </div>
                         <br>
@@ -74,9 +74,9 @@ MODAL PARA VER MESA
                                 <tr>
                                     <th style="width: 10px">N°</th>
                                     <th style="width: 100px">Plato</th>
-                                    <th style="width: 150px">Cantidad</th> 
+                                    <th style="width: 150px">Cantidad</th>
+                                    <th style="width: 100px">Precio</th>
                                     <th style="width: 100px">Mozo</th>
-                                    <th style="width: 100px">Total</th>
                                 </tr>
                             </thead>
                         </table>

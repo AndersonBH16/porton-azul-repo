@@ -36,54 +36,67 @@ $('#agregarMesa').on('click', function(){
     agregarMesa();
 });
 
+var mesa;
+
 function verDetalleMesa(nro_mesa){
-    var mesa = {"nro_mesa" : nro_mesa};
+    mesa = {"nro_mesa" : nro_mesa};
     $('#lbl_nroMesa').text('Mesa N°: ' + nro_mesa);
     $('.tabla_verDetalleMesa').DataTable().destroy();
-    $('.tabla_verDetalleMesa').DataTable({
-        "bDeferRender": true,
-        "sPaginationType": "full_numbers",
-        "ajax":{
-            "data" : mesa,
-            "url": "AjaxControladores/mesa.datatable.controlador.php",
-            "type": "POST"
+
+    $.ajax({
+        data: mesa,
+        method: "POST",
+        url: "AjaxControladores/mesa.datatable.controlador.php",
+        cache: false,
+        dataType: "json",
+        success: function(respuesta) {
+            var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
+            var subTotal = respuesta['data'][productosPorPedido - 1].sub_total; //capturamos el ultimo sub_total de todos los productoPorPedidos
+
+            $("#totalPedido").text("TOTAL: S/." + subTotal);
+
+            $('.tabla_verDetalleMesa').DataTable({
+                "bDeferRender": true,
+                "sPaginationType": "full_numbers",
+                "data" : respuesta['data'],
+                "columns":  [
+                    {"data":"item"},
+                    {"data":"plato"},
+                    {"data":"cantidad"},
+                    {"data":"precio"},
+                    {"data":"nombre_mozo"}
+                ],
+                "language":    {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
         },
-        "columns":  [
-                        {"data":"item"},
-                        {"data":"plato"},
-                        {"data":"cantidad"},
-                        {"data":"nombre_mozo"},
-                        {"data":"total"}
-                    ],
-        "language":    {
-                            "sProcessing":     "Procesando...",
-                            "sLengthMenu":     "Mostrar _MENU_ registros",
-                            "sZeroRecords":    "No se encontraron resultados",
-                            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                            "sInfoPostFix":    "",
-                            "sSearch":         "Buscar:",
-                            "sUrl":            "",
-                            "sInfoThousands":  ",",
-                            "sLoadingRecords": "Cargando...",
-                            "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                            },
-                            "oAria": {
-                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                            }
-                        }
+        error: function(xhr, ajaxOptions, thrownError, error){
+            console.log("Ocurrió un error..." + "\nstatus: " + xhr.status + "\nthrownError: " + thrownError + "\najaxOptions: " + ajaxOptions + "\nerror: " + error);
+        }
     });
 }
-
-
-
 
 
 //    $('#agregarMesa').on('click',function(){
