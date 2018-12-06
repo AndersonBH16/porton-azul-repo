@@ -23,7 +23,7 @@
                     foreach ($mesa as $key => $value){
                         echo '<div style="display: inline-block; margin:2%; width: 180px; height:230px; background: rgba(34, 45, 45, 0.5); padding:10px;">
                                 <input id="nro_mesa" style="font-size:18px; text-align:center; width:45px; color:#F9F902; background:rgba(64, 11, 11, 0.8); left: 0; border: none;" value="N°: '.$value["numero_mesa"].'" disabled>
-                                <a id="'.$value['numero_mesa'].'" data-toggle="modal" data-target="#modalVerDetalleMesa" onclick="verDetalleMesa(id)" title="Ver Mesa" style="cursor:pointer"> 
+                                <a id="'.$value['numero_mesa'].'" data-toggle="modal" data-target="#modalVerDetalleMesa" onclick="verDetalleMesa('.$value['numero_mesa'].')" title="Ver Mesa" style="cursor:pointer"> 
                                     <img class="img-responsive" src="Vista/img/contenido/mesa.png" style="width:100%; height:70%; margin:0; padding:0;">
                                 </a>
                                 <div clas="col-md-8">
@@ -45,7 +45,7 @@
 MODAL PARA VER MESA
 ------------------------------------------->
 <div id="modalVerDetalleMesa" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form role="form" method="POST">
                 <!--=====================================
@@ -86,7 +86,8 @@ MODAL PARA VER MESA
                 PIE DEL MODAL
                 ======================================-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
                 </div>
             </form>
         </div>

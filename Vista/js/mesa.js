@@ -36,10 +36,11 @@ $('#agregarMesa').on('click', function(){
     agregarMesa();
 });
 
-var mesa;
+var n_mesa;
 
 function verDetalleMesa(nro_mesa){
-    mesa = {"nro_mesa" : nro_mesa};
+    n_mesa = nro_mesa;
+    var dato_mesa = {"nro_mesa" : nro_mesa};
     $('#lbl_nroMesa').text('Mesa N°: ' + nro_mesa);
     var tablaDetalleMesa = $('.tabla_verDetalleMesa');
     var mensajeSubTotal = "";
@@ -47,7 +48,7 @@ function verDetalleMesa(nro_mesa){
     tablaDetalleMesa.DataTable().destroy();
 
     $.ajax({
-        data: mesa,
+        data: dato_mesa,
         method: "POST",
         url: "AjaxControladores/mesa.datatable.controlador.php",
         cache: false,
@@ -147,3 +148,6 @@ function verDetalleMesa(nro_mesa){
 ////                imagen_mesa.append(nueva_imagen_mesa);
 ////            });
 
+function cerrarMesa(){
+    alert("La mesa a cerrar es: "+ n_mesa);
+}
