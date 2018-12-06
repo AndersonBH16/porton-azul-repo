@@ -37,3 +37,76 @@ $('#tipoComprobante').on('change' ,function(){
         $('.vistaComprobante').html('<div><button class="btn btn-primary">Incluye!</button></div>');
     }
 });
+
+
+function cerrarMesa(){
+    alert("La mesa a cerrar es: "+ n_mesa);
+}
+
+$("#selectMesa").change(function(){
+    var numeroMesa = $("#selectMesa").val();
+    console.log("Mi mesa es: " + numeroMesa);
+
+    var mesa = {"nro_mesa" : numeroMesa};
+    var tablaDetalleMesa = $('.tabla_caja');
+
+    tablaDetalleMesa.DataTable().destroy();
+
+    $.ajax({
+        data: mesa,
+        method: "POST",
+        url: "AjaxControladores/caja.datatable.controlador.php",
+        cache: false,
+        dataType: "json",
+        success: function(respuesta) {
+            if(respuesta['data'].length != 0) {
+                var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
+                var nombreMozo = respuesta['data'][productosPorPedido - 1].mozo;
+
+                tablaDetalleMesa.DataTable({
+                    "sPaginationType": "full_numbers",
+                    "data": respuesta['data'],
+                    "columns": [
+                        {"data": "item"},
+                        {"data": "descripcion"},
+                        {"data": "cantidad"},
+                        {"data": "subtotal"}
+                    ],
+                    "language": {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sSearch": "Buscar:",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        }
+                    }
+                });
+            }
+            else {
+                tablaDetalleMesa.DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    "destroy": true,
+                    "data": respuesta,
+                    "language": {
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    }
+                });
+            }
+            $("#idNombreMozo").val(nombreMozo);
+            console.log("nombre de mozo: " + nombreMozo);
+        },
+        error: function(xhr, ajaxOptions, thrownError, error){
+            console.log("Ocurrió un error..." + "\nstatus: " + xhr.status + "\nthrownError: " + thrownError + "\najaxOptions: " + ajaxOptions + "\nerror: " + error);
+        }
+    });
+});

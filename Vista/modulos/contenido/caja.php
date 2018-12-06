@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>                    
-                                <select class="form-control" name="sel_mesa">
+                                <select class="form-control" name="sel_mesa" id="selectMesa">
                                     <option value="">Seleccione Mesa</option>
                                     <?php                                           
                                         $respuesta = MesaControlador::ctrMostrarMesa();
@@ -38,114 +38,23 @@
                     <div class="col-lg-5">                        
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" readonly>
+                            <input id="idNombreMozo" type="text" class="form-control" readonly>
                         </div>                        
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-lg-9">
-                        <div class="well">
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <p class="text-center" style="font-size: 18px;"><b>REPORTE DEL PEDIDO</b></p>
-                                </div>
-                                <div class="row groups">
-                                    <div class="col-md-1">
-                                        <p class="text-center"><b>Código</b></p>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <p class="text-center"><b>Descripción</b></p>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <p class="text-center"><b>Cantidad</b></p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p class="text-center"><b>Precio S/.</b></p>
-                                    </div>
-                                </div>
-                                <div class="no-border">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p class="text-center">123</p>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="text-center">Lomito Saltado - lorem ipsum</p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <p class="text-center">2</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-center">25.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p class="text-center">321</p>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="text-center">Lomito Saltado - lorem ipsum</p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <p class="text-center">1</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-center">43.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p class="text-center">123</p>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="text-center">Lomito Saltado - lorem ipsum</p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <p class="text-center">1</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-center">29.50</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p class="text-center">123</p>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="text-center">Lomito Saltado - lorem ipsum</p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <p class="text-center">2</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-center">55.90</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <p class="text-center">123</p>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="text-center">Lomito Saltado - lorem ipsum</p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <p class="text-center">7</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="text-center">199.00</p>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                                <div class="box col-lg-12 box-default"></div>
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <p style="font-size: 18px"><b>Total:</b></p>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input class="text-center form-control input-lg" style="font-size: 18px;" value="123.45" readonly>
-                                    </div>             
-                                </div>
-                            </div>
-                        </div>
+                        <table class="table table-bordered table-striped dt-responsive tabla_caja" width="100%">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">Código</th>
+                                <th style="width: 100px">Descripción</th>
+                                <th style="width: 150px">Cantidad</th>
+                                <th style="width: 100px">Sub total S/.</th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                     <div class="col-lg-3">
                         <div class="col-md-12">                            
@@ -153,9 +62,10 @@
                                 <img class="img-responsive center-block" src="Vista/img/contenido/recepcion.png"><b>Imprimir Cuenta</b>
                             </button> 
                             <div style="height: 50px;"></div>                            
-                            <button class="btn btn-outline btn-success center-block" data-toggle="modal" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
+                            <button disabled class="btn btn-outline btn-success center-block" data-toggle="modal" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
                                 <img class="img-responsive center-block" src="Vista/img/contenido/impresora.png"><b>Generar Comprobante</b>
-                            </button>                            
+                            </button>
+                            <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
                         </div>
                     </div>
                 </div>

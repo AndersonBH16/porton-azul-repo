@@ -6,8 +6,14 @@
             $resultado = MesaModelo::mdlMostrarMesas($tabla);            
             return $resultado;
         }
+
         public static function ctrVerDetalleMesa($nro_mesa){
             $resultado = MesaModelo::verDetalleMesa($nro_mesa);
+            echo $resultado;
+        }
+
+        public static function ctrVerDetalleMesaParaCaja($nro_mesa){
+            $resultado = MesaModelo::verDetalleMesaParaCaja($nro_mesa);
             echo $resultado;
         }
     }

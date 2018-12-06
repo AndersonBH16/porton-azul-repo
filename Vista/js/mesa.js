@@ -77,6 +77,7 @@ function verDetalleMesa(nro_mesa){
                         "sLengthMenu": "Mostrar _MENU_ registros",
                         "sZeroRecords": "No se encontraron resultados",
                         "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
                         "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
                         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                         "sSearch": "Buscar:",
@@ -147,7 +148,3 @@ function verDetalleMesa(nro_mesa){
 ////            $('#agregarMesa').on('click',function(){
 ////                imagen_mesa.append(nueva_imagen_mesa);
 ////            });
-
-function cerrarMesa(){
-    alert("La mesa a cerrar es: "+ n_mesa);
-}

@@ -87,7 +87,6 @@ MODAL PARA VER MESA
                 ======================================-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Salir</button>
-                    <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
                 </div>
             </form>
         </div>
