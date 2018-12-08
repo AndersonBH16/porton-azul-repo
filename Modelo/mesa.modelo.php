@@ -73,7 +73,7 @@
                     'plato' => $pedido->nombre_producto,
                     'cantidad' => $pedido->cantidad,
                     'precio' => $pedido->precio,
-                    'nombre_mozo' => $pedido->nombre_pesonal,
+                    'nombre_mozo' => $pedido->nombre_personal,
                     'sub_total'=> $pedido->sub_total
                 ];
                 $i++;

@@ -20,10 +20,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/modulos/contenido/mesas.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Modelo/mesa.modelo.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Controlador/mesa.controlador.php</file>
-            <file>file:/C:/xampp/htdocs/PortonAzulv1.0/Vista/js/mesa.js</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/AjaxControladores/mesa.datatable.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Controlador/mesa.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Vista/modulos/contenido/caja.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Vista/js/mesa.js</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Controlador/plantilla.controlador.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Vista/plantilla.vista.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Modelo/mesa.modelo.php</file>
+            <file>file:/C:/xampp/htdocs/porton-azul-repo/Vista/modulos/contenido/mesas.php</file>
         </group>
     </open-files>
 </project-private>

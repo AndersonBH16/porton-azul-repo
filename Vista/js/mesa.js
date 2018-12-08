@@ -61,6 +61,8 @@ function verDetalleMesa(nro_mesa){
                 if (subTotal != null) {
                     mensajeSubTotal = "TOTAL: S/." + subTotal; //capturamos el ultimo sub_total de todos los productoPorPedidos
                 }
+                
+                $('#txt_mesero').val(respuesta['data'][productosPorPedido - 1].nombre_mozo);
 
                 tablaDetalleMesa.DataTable({
                     "sPaginationType": "full_numbers",
@@ -69,8 +71,7 @@ function verDetalleMesa(nro_mesa){
                         {"data": "item"},
                         {"data": "plato"},
                         {"data": "cantidad"},
-                        {"data": "precio"},
-                        {"data": "nombre_mozo"}
+                        {"data": "precio"}
                     ],
                     "language": {
                         "sProcessing": "Procesando...",

@@ -61,10 +61,16 @@ MODAL PARA VER MESA
                 <div class="modal-body">
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <a href="pedido" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar Pedido</a>
                             </div>
-                            <div class="col-md-6 row">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input id="txt_mesero" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4 row pull-right">
                                 <label id="totalPedido"></label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
                             </div>
                         </div>
@@ -76,7 +82,6 @@ MODAL PARA VER MESA
                                     <th style="width: 100px">Plato</th>
                                     <th style="width: 150px">Cantidad</th>
                                     <th style="width: 100px">Precio</th>
-                                    <th style="width: 100px">Mozo</th>
                                 </tr>
                             </thead>
                         </table>

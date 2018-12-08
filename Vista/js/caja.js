@@ -38,13 +38,9 @@ $('#tipoComprobante').on('change' ,function(){
     }
 });
 
-
-function cerrarMesa(){
-    alert("La mesa a cerrar es: "+ n_mesa);
-}
-
+var numeroMesa;
 $("#selectMesa").change(function(){
-    var numeroMesa = $("#selectMesa").val();
+    numeroMesa = $("#selectMesa").val();
     console.log("Mi mesa es: " + numeroMesa);
 
     var mesa = {"nro_mesa" : numeroMesa};
@@ -108,5 +104,10 @@ $("#selectMesa").change(function(){
         error: function(xhr, ajaxOptions, thrownError, error){
             console.log("Ocurrió un error..." + "\nstatus: " + xhr.status + "\nthrownError: " + thrownError + "\najaxOptions: " + ajaxOptions + "\nerror: " + error);
         }
-    });
+    });    
 });
+
+
+function cerrarMesa(){
+    alert("La mesa a cerrar es: "+ numeroMesa);
+}
