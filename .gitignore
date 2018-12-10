@@ -1,0 +1,8 @@
+.idea/
+nbproject/
+docker-stuff/
+dockerfile
+docker-compose.yml
+p-a.mwb
+p-a.mwb.bak
+Modelo/conexion.php
