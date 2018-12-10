@@ -1,0 +1,23 @@
+body {
+    margin: 0 auto;
+    padding: 4%;
+}
+
+.contenido {
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+}
+
+.izquierda {
+    text-align: left;
+}
+
+.derecha {
+    text-align: right;
+}
+
+#customers {
+    font-size: 13px;
+    width: 100%;
+}

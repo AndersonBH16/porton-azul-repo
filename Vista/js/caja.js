@@ -38,6 +38,13 @@ $('#tipoComprobante').on('change' ,function(){
     }
 });
 
+
+function cerrarMesa(){
+    alert("La mesa a cerrar es: "+ n_mesa);
+}
+
+var detalleMesa;
+
 var numeroMesa;
 $("#selectMesa").change(function(){
     numeroMesa = $("#selectMesa").val();
@@ -56,6 +63,7 @@ $("#selectMesa").change(function(){
         dataType: "json",
         success: function(respuesta) {
             if(respuesta['data'].length != 0) {
+                detalleMesa = respuesta;
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
                 var nombreMozo = respuesta['data'][productosPorPedido - 1].mozo;
 
@@ -104,7 +112,70 @@ $("#selectMesa").change(function(){
         error: function(xhr, ajaxOptions, thrownError, error){
             console.log("Ocurrió un error..." + "\nstatus: " + xhr.status + "\nthrownError: " + thrownError + "\najaxOptions: " + ajaxOptions + "\nerror: " + error);
         }
-    });    
+    });
+});
+
+var totalPagar = 0;
+
+function obtenerDetalleBoleta(detalle){
+    var contenidoTabla = "";
+
+    for(var i = 0;  i < detalle['data'].length; i++){
+        contenidoTabla +=
+            "<tr>" +
+                "<td>" + detalle['data'][i].descripcion + "</td>" +
+                "<td>" + detalle['data'][i].cantidad + "</td>" +
+                "<td>" + detalle['data'][i].subtotal + "</td>" +
+            "</tr>";
+        totalPagar += detalle['data'][i].subtotal;
+    }
+    return contenidoTabla;
+}
+
+$('#botonImprimirBoleta').click(function(){
+    if (detalleMesa != null) {
+        var boleta = '<!doctype html>' +
+            '<html lang="en">' +
+            '<head>' +
+            '    <meta charset="UTF-8">' +
+            '    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">' +
+            '    <meta http-equiv="X-UA-Compatible" content="ie=edge">' +
+            '    <link rel="icon" type="image/png" sizes="32x32" href="../../img/login/logo.png">' +
+            '    <link rel="stylesheet" href="../../impresiones/boleta.css">' +
+            '    <title>Recibo | Portón Azul</title>' +
+            '</head>' +
+            '<body>' +
+            '<div class="contenido">' +
+            '    <div>Portón Azul</div>' +
+            '    <div>Ruc: 783775885673</div>' +
+            '    <div>Dirección: tal tal tal tal</div>' +
+            '    <div>Teléfono: 044477856</div>' +
+            '    <br>' +
+            '    <div><b>Boleta N° xxx</b></div>' +
+            '    <br>' +
+            '    <div class="contenido izquierda">' +
+            '        <div>Mesa:     ' + $("#selectMesa").val() + '</div>' +
+            '        <div>Mozo:     ' + detalleMesa['data'][0].mozo + '</div>' +
+            '        <div>Observ:   mi observación</div>' +
+            '    </div>' +
+            '    <br>' +
+            '    <div><b>Detalle de Venta</b></div>' +
+            '    <hr>' +
+            '    <div><b>Producto * Cantidad         Subtotal (S/.)</b></div>' +
+            '    <hr>' +
+            '    <table id="customers">' +
+            obtenerDetalleBoleta(detalleMesa) +
+            '    </table>' +
+            '    <hr>' +
+            '    <div class="derecha">TOTAL A PAGAR: ' + totalPagar + ' Nuevos soles</div>' +
+            '</div>' +
+            '</body>' +
+            '</html>';
+        window.open('Vista/modulos/contenido/boleta.php?boleta=' + boleta);
+    }
+    else {
+        alert("Selecciona una mesa");
+    }
 });
 
 
