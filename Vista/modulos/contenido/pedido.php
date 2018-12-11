@@ -47,7 +47,7 @@
                                 <div class="form-group">                                
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>                    
-                                        <select class="form-control" id="seleccioneEmpleado" name="sel_mozo" >
+                                        <select class="form-control" id="seleccioneEmpleado" name="sel_mozo" required>
                                             <option value="">Seleccione Mozo</option>
                                             <?php                                           
                                                 $respuesta = PersonalControlador::ctrMostrarPersonalPerfil();

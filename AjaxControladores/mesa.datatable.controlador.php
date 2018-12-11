@@ -3,7 +3,7 @@
     require_once '../Modelo/mesa.modelo.php';
 
 
-class TablaMesa {
+    class TablaMesa {
         public $nroMesa;
         public function verDetalleMesa(){
             $nm = $this->nroMesa;
@@ -12,7 +12,7 @@ class TablaMesa {
         }
     }
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(isset($_POST['nro_mesa'])){
         $nuevaTablaMesa = new TablaMesa();
         $nuevaTablaMesa->nroMesa = $_POST['nro_mesa'];
         $nuevaTablaMesa->verDetalleMesa();

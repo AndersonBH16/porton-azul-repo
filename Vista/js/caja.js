@@ -178,7 +178,36 @@ $('#botonImprimirBoleta').click(function(){
     }
 });
 
-
 function cerrarMesa(){
     alert("La mesa a cerrar es: "+ numeroMesa);
+    data = {"nro_mesa" : numeroMesa};    
+    $.ajax({
+        data: data,
+        method: "POST",
+        url: "AjaxControladores/caja.ajax.controlador.php",
+        cache: false,
+        dataType: "json",
+        success: function(respuesta){
+            if(respuesta == '1'){
+                swal({
+                        icon: "success",
+                        type: "success",
+                        title: "¡Mesa cerrada con éxito!",
+                        timer: 2000,
+                        showConfirmButton: false                          
+                        }).then(function(){
+                            window.location = "caja";
+                    });
+            }else{
+                swal({
+                        icon: "danger",
+                        type: "danger",
+                        title: "¡Error al cerrar mesa!",
+                        timer: 2000,
+                        showConfirmButton: false                          
+                        }).then(function(){
+                            window.location = "caja";
+                    });
+            }
+        }});
 }
