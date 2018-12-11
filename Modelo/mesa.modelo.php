@@ -61,7 +61,7 @@
                         ON personal_perfil.id_personal_perfil = pedido.PERSONAL_PERFIL_id_personal_perfil
                         INNER JOIN personal
                         ON personal.id_personal = personal_perfil.PERSONAL_id_personal
-                        WHERE mesa.numero_mesa = '$numeroMesa'";
+                        WHERE mesa.numero_mesa = '$numeroMesa' AND estado_pedido = 1";
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
             $pedidos = $statement->fetchAll(PDO::FETCH_CLASS);
