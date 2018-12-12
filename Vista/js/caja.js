@@ -132,16 +132,16 @@ function obtenerDetalleBoleta(detalle){
     return contenidoTabla;
 }
 
-$('#botonImprimirBoleta').click(function(){
+$('#botonImprimirTicketPago').click(function(){
     if (detalleMesa != null) {
-        var boleta = '<!doctype html>' +
+        var ticketPago = '<!doctype html>' +
             '<html lang="en">' +
             '<head>' +
             '    <meta charset="UTF-8">' +
             '    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">' +
             '    <meta http-equiv="X-UA-Compatible" content="ie=edge">' +
             '    <link rel="icon" type="image/png" sizes="32x32" href="../../img/login/logo.png">' +
-            '    <link rel="stylesheet" href="../../impresiones/boleta.css">' +
+            '    <link rel="stylesheet" href="../../impresiones/ticketPago.css">' +
             '    <title>Recibo | Portón Azul</title>' +
             '</head>' +
             '<body>' +
@@ -171,7 +171,7 @@ $('#botonImprimirBoleta').click(function(){
             '</div>' +
             '</body>' +
             '</html>';
-        window.open('Vista/modulos/contenido/boleta.php?boleta=' + boleta);
+        window.open('Vista/modulos/contenido/ticketPago.php?ticket_pago=' + ticketPago);
     }
     else {
         alert("Selecciona una mesa");
@@ -209,5 +209,6 @@ function cerrarMesa(){
                             window.location = "caja";
                     });
             }
-        }});
+        }
+    });
 }

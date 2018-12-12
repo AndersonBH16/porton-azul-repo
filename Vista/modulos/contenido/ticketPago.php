@@ -10,7 +10,7 @@
     use Dompdf\Dompdf;
 
     $pdf = new Dompdf();
-    $html = $_GET["boleta"];
+    $html = $_GET["ticket_pago"];
     $pdf->loadHtml($html);
     $pdf->setPaper("A4");
     $pdf->render();

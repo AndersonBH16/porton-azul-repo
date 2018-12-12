@@ -58,11 +58,11 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="col-md-12">
-                            <button class="btn btn-outline btn-info center-block" style="width: 100%; border-color: #007fff; color: #000077;" id="botonImprimirBoleta">
+                            <button class="btn btn-outline btn-info center-block" style="width: 100%; border-color: #007fff; color: #000077;" id="botonImprimirTicketPago">
                                 <img class="img-responsive center-block" src="Vista/img/contenido/recepcion.png"><b>Imprimir Cuenta</b>
                             </button>
                             <div style="height: 50px;"></div>
-                            <button disabled class="btn btn-outline btn-success center-block" data-toggle="modal" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
+                            <button class="btn btn-outline btn-success center-block" data-toggle="modal" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
                                 <img class="img-responsive center-block" src="Vista/img/contenido/impresora.png"><b>Generar Comprobante</b>
                             </button>
                             <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
