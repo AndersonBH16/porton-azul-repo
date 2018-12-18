@@ -126,6 +126,7 @@
                             $_GET["ruta"] == "pedido"||
                             $_GET["ruta"] == "cocina"||
                             $_GET["ruta"] == "caja"||
+                            $_GET["ruta"] == "reporte_ventas" ||
                             $_GET["ruta"] == "gestion_usuarios"||
                             $_GET["ruta"] == "salir"){
                             include "modulos/contenido/".$_GET["ruta"].".php";                            
@@ -154,6 +155,7 @@
         <script src="Vista/js/pedido.js"></script>
         <script src="Vista/js/cocina.js"></script>
         <script src="Vista/js/caja.js"></script>
+        <script src="Vista/js/reporte_ventas.js"></script>
         <script src="Vista/js/gestion_usuario.js"></script>
         <script>
             $(document).ready(function(){

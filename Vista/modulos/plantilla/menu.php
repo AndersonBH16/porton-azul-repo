@@ -81,7 +81,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="#">
+                            <a href="reporte_ventas">
                                 <i class="fa fa-usd"></i>
                                 <span>Reporte de Ventas</span>
                             </a>
