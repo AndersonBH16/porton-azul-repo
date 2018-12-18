@@ -8,7 +8,7 @@
         
         public static function verDetalleMesaParaCaja($nro_mesa){
             $respuesta = CajaModelo::verDetalleMesaParaCaja($nro_mesa);
-            return $respuesta;
+            echo $respuesta;
         }
     }
     

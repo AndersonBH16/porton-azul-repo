@@ -9,7 +9,7 @@
 
         public static function ctrVerDetalleMesa($nro_mesa){
             $resultado = MesaModelo::verDetalleMesa($nro_mesa);
-            return $resultado;
+            echo $resultado;
         }
         
         public static function ctrEnviarCaja($id_pedido){

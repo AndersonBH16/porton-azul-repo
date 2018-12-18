@@ -54,7 +54,7 @@ function verDetalleMesa(nro_mesa){
         cache: false,
         dataType: "json",
         success: function(respuesta) {
-            if(!isEmpty(respuesta['data'].length != 0)) {
+            if(respuesta['data'].length != 0) {
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
                 id_pedido = respuesta['data'][productosPorPedido - 1].id_pedido;
                 var subTotal = respuesta['data'][productosPorPedido - 1].sub_total;

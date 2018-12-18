@@ -8,7 +8,7 @@
         public function verDetalleMesa(){
             $nm = $this->nroMesa;
             $respuesta = MesaControlador::ctrVerDetalleMesa($nm);
-            echo json_encode($respuesta);
+            echo $respuesta;
         }
     }
 
