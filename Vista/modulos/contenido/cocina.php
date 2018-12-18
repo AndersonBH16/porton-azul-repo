@@ -19,6 +19,7 @@
         <div class="box">            
             <div class="box-body">
                 <div class="box-header with-border"></div>
+                <div id="hola"></div>
                 <table class="table table-bordered table-striped dt-responsive tabla_cocina" width="100%">
                     <thead>
                         <tr>

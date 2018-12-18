@@ -44,3 +44,44 @@ $('.tabla_cocina').DataTable({
                         }
                     }
 });
+
+function atenderPedido(nro_pedido_producto){
+    $('#'+nro_pedido_producto+'').hide('button');
+    var divPadre = $('#divPadre'+nro_pedido_producto+'');
+    var divHijo = '<div id="div'+nro_pedido_producto+'" style="margin:auto; display:none; width:30px; heigth:25px; cursor:pointer;"></div>';
+    divPadre.append(divHijo);
+    $('#div'+nro_pedido_producto+'').show();
+    var bar = new ProgressBar.Circle('#div'+nro_pedido_producto+'',{
+         strokeWidth: 8,
+         easing: 'easeInOut',
+         duration: 3000,
+         color: '#F9AD1F',
+         trailColor: '#eee',
+         trailWidth: 1,
+         svgStyle: null
+    });
+    
+    bar.animate(1.0);
+    
+    $('#div'+nro_pedido_producto+'').on('click', function(){
+        $('#div'+nro_pedido_producto+'').remove();
+        $('#'+nro_pedido_producto+'').show('button');
+    });
+    
+    
+    setTimeout("enviarPedido("+nro_pedido_producto+")",3000);
+}
+
+function enviarPedido(nro_pedido_producto){
+    var datos ={"nro_pedido_producto" : nro_pedido_producto};    
+    $.ajax({
+        url:"AjaxControladores/cocina.ajax.controlador.php",
+      	method: "POST",
+      	data: datos,
+      	success:function(respuesta){            
+            if(respuesta){
+                $('#div'+nro_pedido_producto+'').parent().parent().parent().fadeOut("slow");
+            }
+        }
+    });    
+}

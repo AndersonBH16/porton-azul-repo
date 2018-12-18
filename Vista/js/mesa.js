@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    
-} );
 
+} );
 
 function agregarMesa(){
     $.ajax({
@@ -38,6 +37,7 @@ $('#agregarMesa').on('click', function(){
 
 var n_mesa;
 
+var id_pedido;
 function verDetalleMesa(nro_mesa){
     n_mesa = nro_mesa;
     var dato_mesa = {"nro_mesa" : nro_mesa};
@@ -54,12 +54,13 @@ function verDetalleMesa(nro_mesa){
         cache: false,
         dataType: "json",
         success: function(respuesta) {
-            if(respuesta['data'].length != 0) {
+            if(!isEmpty(respuesta['data'].length != 0)) {
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
+                id_pedido = respuesta['data'][productosPorPedido - 1].id_pedido;
                 var subTotal = respuesta['data'][productosPorPedido - 1].sub_total;
 
                 if (subTotal != null) {
-                    mensajeSubTotal = "TOTAL: S/." + subTotal; //capturamos el ultimo sub_total de todos los productoPorPedidos
+                    mensajeSubTotal = subTotal; //capturamos el ultimo sub_total de todos los productoPorPedidos
                 }
                 
                 $('#txt_mesero').val(respuesta['data'][productosPorPedido - 1].nombre_mozo);
@@ -104,7 +105,7 @@ function verDetalleMesa(nro_mesa){
                 });
             }
 
-            $("#totalPedido").text(mensajeSubTotal);
+            $("#lbl_totalMesa").text(mensajeSubTotal);
         },
         error: function(xhr, ajaxOptions, thrownError, error){
             console.log("Ocurrió un error..." + "\nstatus: " + xhr.status + "\nthrownError: " + thrownError + "\najaxOptions: " + ajaxOptions + "\nerror: " + error);
@@ -112,25 +113,27 @@ function verDetalleMesa(nro_mesa){
     });
 }
 
-
-//    $('#agregarMesa').on('click',function(){
-//        
-//    });
-//    
-//    $.ajax({
-//        data: null,
-//        url: 'Controlador/mesa.controlador.php',
-//        type: 'POST',
-//        beforeSend: function () {
-//            
-//        },
-//        success: function (response){
-//            console.log(parametros);
-//        }
-//    });
-
-
-
+function enviarCaja(){
+    var datos = {"id_pedido" : id_pedido};
+    $.ajax({
+        data: datos,
+        method: "POST",
+        url: "AjaxControladores/mesa.ajax.controlador.php",
+        success: function(respuesta) {
+            
+                swal({
+                        icon: "success",
+                        type: "success",
+                        title: "¡La cuenta se enviado ha correctamente!",
+                        timer: 3000,
+                        showConfirmButton: false                          
+                        }).then(function(){
+                            window.location = "mesas";
+                    });
+            
+        }
+    });
+}
 
 
 //            var imagen_mesa = $('#mesa');

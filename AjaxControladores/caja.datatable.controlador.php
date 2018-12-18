@@ -1,15 +1,16 @@
 <?php
-    include_once '../Controlador/mesa.controlador.php';
-    require_once '../Modelo/mesa.modelo.php';
+    include_once '../Controlador/caja.controlador.php';
+    require_once '../Modelo/caja.modelo.php';
 
 
 class TablaCaja {
         public $nroMesa;
+        
         public function verDetalleMesaParaCaja(){
-            $nm = $this->nroMesa;
-            $respuesta = MesaControlador::ctrVerDetalleMesaParaCaja($nm);
-            return $respuesta;
-        }
+            $nMesa = $this->nroMesa;
+            $resultado = CajaControlador::verDetalleMesaParaCaja($nMesa);
+            echo $resultado;
+        }        
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){

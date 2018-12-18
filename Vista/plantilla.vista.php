@@ -45,11 +45,8 @@
         <link rel="stylesheet" href="Vista/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
         <!-- Morris chart -->
-        <link rel="stylesheet" href="Vista/bower_components/morris.js/morris.css">
-                
-        <link rel="stylesheet" href="Vista/bower_components/colors2.0-bootstrap/css/colors.css">
-        <link rel="stylesheet" href="Vista/bower_components/colors2.0-bootstrap/css/colors.min.css">
-      
+        <link rel="stylesheet" href="Vista/bower_components/morris.js/morris.css">                
+        
         <!--=====================================
         PLUGINS DE JAVASCRIPT
         ======================================-->
@@ -99,7 +96,9 @@
         <!-- ChartJS http://www.chartjs.org/-->
         <script src="Vista/bower_components/chart.js/Chart.js"></script>
         
-        <script src="Vista/bower_components/colors2.0-bootstrap/js/app.js"></script>
+        <!-- Progress Bar -->
+        <script src="Vista/bower_components/progressbar/dist/progressbar.min.js"></script>
+        <script src="Vista/bower_components/progressbar/dist/progressbar.js"></script>
     </head>
     
     <!--CUERPO DEL SISTEMA-->

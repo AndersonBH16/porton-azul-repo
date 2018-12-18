@@ -3,6 +3,7 @@
     require_once '../Modelo/mesa.modelo.php';
     
     class MesaAjaxControlador{
+        public $id_pedido;
         public function ctrAjaxAgregarMesa(){
             $tabla = "mesa";
             $resultado = MesaModelo::agregarMesa($tabla);
@@ -15,15 +16,35 @@
 //                "estadoMesa" => $estadoMesa
 //            ];
 //            array_push($return, $retorno);
-            return $numeroMesa;
+//            return $numeroMesa;
+        }
+        
+        public function ctrAjaxVerMesa(){
+            $resultado = MesaControlador::ctrMostrarMesa();
+            echo json_encode($resultado);
+        }
+        
+        public function ctrAjaxEnviarCaja(){
+            $idPedido = $this->id_pedido;
+            $resultado = MesaControlador::ctrEnviarCaja($idPedido);
+            echo $resultado;
         }
     }
     
         
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-	$mesa = new MesaAjaxControlador();
-        $mesa->ctrAjaxAgregarMesa();
-    } 
+        if(isset($_POST['flag'])){
+            $mesa = new MesaAjaxControlador();
+            $mesa->ctrAjaxVerMesa();            
+        }else if(isset($_POST['id_pedido'])){
+            $mesa = new MesaAjaxControlador();
+            $mesa->id_pedido = $_POST['id_pedido'];
+            $mesa->ctrAjaxEnviarCaja();
+        }else{
+            $mesa = new MesaAjaxControlador();
+            $mesa->ctrAjaxAgregarMesa();            
+        }
+    }    
     
 ?>
 

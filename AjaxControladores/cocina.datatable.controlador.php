@@ -8,9 +8,8 @@
             $resultado_tablaCocina = CocinaControlador::ctrMostrarCocina();
             
             $tablaCocina = "";
-
             foreach($resultado_tablaCocina as $key => $value){
-                $botones = '<div class=\"btn-group\"><button class=\"btn btn-success\">'.$value["estado"].'</button></div>';
+                $botones = '<div id=\"divPadre'.$value["id_pedido_producto"].'\" style=\"text-align:center;\"><div id=\"div'.$value["id_pedido_producto"].'\" style=\"margin:auto; display:none; width:30px; heigth:25px;\"></div><button id=\"'.$value["id_pedido_producto"].'\" class=\"btn btn-success\" onclick=\"atenderPedido('.$value["id_pedido_producto"].')\">'.$value["estado"].'</button></div>';
                 $tablaCocina .= '{
                                   "item" : "'.($key+1).'",
                                   "plato" : "'.$value["nombre_producto"].'",

@@ -9,12 +9,12 @@
 
         public static function ctrVerDetalleMesa($nro_mesa){
             $resultado = MesaModelo::verDetalleMesa($nro_mesa);
-            echo $resultado;
+            return $resultado;
         }
-
-        public static function ctrVerDetalleMesaParaCaja($nro_mesa){
-            $resultado = MesaModelo::verDetalleMesaParaCaja($nro_mesa);
-            echo $resultado;
+        
+        public static function ctrEnviarCaja($id_pedido){
+            $resultado = MesaModelo::enviarCaja($id_pedido);
+            return $resultado;
         }
     }
   

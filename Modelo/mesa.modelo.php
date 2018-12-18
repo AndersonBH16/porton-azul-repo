@@ -49,7 +49,8 @@
                                 pedido_producto.cantidad,
                                 producto.precio,
                                 personal.nombre_personal,
-                                pedido.sub_total
+                                pedido.sub_total,
+                                pedido.id_pedido
                         FROM mesa
                         INNER JOIN pedido
                         ON mesa.id_mesa = pedido.MESA_id_mesa
@@ -74,7 +75,8 @@
                     'cantidad' => $pedido->cantidad,
                     'precio' => $pedido->precio,
                     'nombre_mozo' => $pedido->nombre_personal,
-                    'sub_total'=> $pedido->sub_total
+                    'sub_total'=> $pedido->sub_total,
+                    'id_pedido'=> $pedido->id_pedido
                 ];
                 $i++;
                 array_push($nPedidos, $datos);
@@ -84,45 +86,15 @@
             ]);
             return $retornoPedidos;
         }
-
-        public function verDetalleMesaParaCaja($numeroMesa) {
-            $consulta = "SELECT producto.nombre_producto,
-                                pedido_producto.cantidad,
-                                producto.precio,
-                                personal.nombre_personal
-                        FROM mesa
-                        INNER JOIN pedido
-                        ON mesa.id_mesa = pedido.MESA_id_mesa
-                        INNER JOIN pedido_producto
-                        ON pedido.id_pedido = pedido_producto.PEDIDO_id_pedido
-                        INNER JOIN producto
-                        ON producto.id_producto = pedido_producto.PRODUCTO_id_producto
-                        INNER JOIN personal_perfil
-                        ON personal_perfil.id_personal_perfil = pedido.PERSONAL_PERFIL_id_personal_perfil
-                        INNER JOIN personal
-                        ON personal.id_personal = personal_perfil.PERSONAL_id_personal
-                        WHERE mesa.numero_mesa = '$numeroMesa'";
-
+        
+        public static function enviarCaja($id_pedido){
+            $consulta = "CALL sp_enviarCaja('$id_pedido')";
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
-            $pedidos = $statement->fetchAll(PDO::FETCH_CLASS);
-            $i = 1;
-            $nPedidos = [];
-            foreach ($pedidos as $pedido){
-                $datos = [
-                    'item' => $i,
-                    'descripcion' => $pedido->nombre_producto,
-                    'cantidad' => $pedido->cantidad,
-                    'subtotal' => round($pedido->cantidad * $pedido->precio, 2),
-                    'mozo' => $pedido->nombre_personal
-                ];
-                $i++;
-                array_push($nPedidos, $datos);
-            }
-            $retornoPedidos = json_encode([
-                "data" => $nPedidos
-            ]);
-            return $retornoPedidos;
+            return $statement->fetch();
+            
+            $statement->close();
+            $statement = null;
         }
     }
     

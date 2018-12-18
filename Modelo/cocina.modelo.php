@@ -3,7 +3,7 @@
     
     class CocinaModelo{
         public static function mdlMostrarCocina(){
-            $consulta = "SELECT id_personal,nombre_personal,id_personal_perfil,estado,detalle,numero_mesa, cantidad, nombre_producto, descripcion_producto FROM PERSONAL
+            $consulta = "SELECT id_pedido_producto,id_personal,nombre_personal,id_personal_perfil,estado,detalle,numero_mesa, cantidad, nombre_producto, descripcion_producto FROM PERSONAL
                         JOIN PERSONAL_PERFIL
                         ON personal.id_personal = personal_perfil.PERSONAL_id_personal
                         JOIN PERFIL
@@ -18,11 +18,21 @@
                         ON PRODUCTO.id_producto = PEDIDO_PRODUCTO.PRODUCTO_id_producto
                         JOIN CATEGORIA_PRODUCTO
                         ON CATEGORIA_PRODUCTO.id_categoria_producto = PRODUCTO.CATEGORIA_PRODUCTO_id_categoria_producto
-                        WHERE estado = 'EN ESPERA'
+                        WHERE estado = 'EN ESPERA' AND estado_pedido_producto = 1
                         ORDER BY id_personal;";
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
             return $statement->fetchAll();
+            
+            $statement->close();
+            $statement = null;
+        }
+        
+        public static function mdlAtenderPedido($numPedido){
+            $consulta = "CALL sp_atenderPedido('$numPedido')";
+            $statement = Conexion::Conectar()->prepare($consulta);
+            $statement->execute();
+            return $statement->fetch()[0];
             
             $statement->close();
             $statement = null;

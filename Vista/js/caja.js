@@ -18,14 +18,13 @@ $("#selectMesa").change(function(){
     var tablaDetalleMesa = $('.tabla_caja');
 
     tablaDetalleMesa.DataTable().destroy();
-
     $.ajax({
         data: mesa,
         method: "POST",
         url: "AjaxControladores/caja.datatable.controlador.php",
         cache: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function(respuesta){
             if(respuesta['data'].length != 0) {
                 detalleMesa = respuesta;
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
@@ -66,7 +65,7 @@ $("#selectMesa").change(function(){
                     "destroy": true,
                     "data": respuesta,
                     "language": {
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla"
                     }
                 });
             }
@@ -156,7 +155,7 @@ function cerrarMesa(){
                 swal({
                         icon: "success",
                         type: "success",
-                        title: "¡Mesa cerrada con éxito!",
+                        title: "¡Mesa N° "+numeroMesa+" cerrada con éxito!",
                         timer: 2000,
                         showConfirmButton: false                          
                         }).then(function(){
@@ -164,17 +163,17 @@ function cerrarMesa(){
                     });
             }else{
                 swal({
-                        icon: "danger",
-                        type: "danger",
+                        type: "error",
                         title: "¡Error al cerrar mesa!",
                         timer: 2000,
+                        text:'Verificar datos de mesa',
                         showConfirmButton: false                          
                         }).then(function(){
                             window.location = "caja";
                     });
             }
-        }
-    });
+        }});
+    $('#txt_mesero').val("");
 }
 
 $("#botonGenerarComprobante").click(function(){

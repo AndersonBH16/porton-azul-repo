@@ -21,13 +21,23 @@
                 <?php
                     $mesa = MesaControlador::ctrMostrarMesa();
                     foreach ($mesa as $key => $value){
+                        $claseBoton = "";
+                        if ($value["estado_mesa"] == "Ocupado"){
+                            $claseBoton = "btn btn-danger";
+                        }
+                        else if($value['estado_mesa'] == 'Disponible'){
+                            $claseBoton = "btn btn-success";
+                        }else{
+                            $claseBoton = "btn btn-warning";
+                        }
+                        
                         echo '<div style="display: inline-block; margin:2%; width: 180px; height:230px; background: rgba(34, 45, 45, 0.5); padding:10px;">
                                 <input id="nro_mesa" style="font-size:18px; text-align:center; width:45px; color:#F9F902; background:rgba(64, 11, 11, 0.8); left: 0; border: none;" value="N°: '.$value["numero_mesa"].'" disabled>
                                 <a id="'.$value['numero_mesa'].'" data-toggle="modal" data-target="#modalVerDetalleMesa" onclick="verDetalleMesa('.$value['numero_mesa'].')" title="Ver Mesa" style="cursor:pointer"> 
                                     <img class="img-responsive" src="Vista/img/contenido/mesa.png" style="width:100%; height:70%; margin:0; padding:0;">
                                 </a>
                                 <div clas="col-md-8">
-                                    <button class="btn btn-success" style="margin-left:23%;" value="">'.$value["estado_mesa"].'</button>
+                                    <button class="'.$claseBoton.'" style="margin-left:23%;" value="">'.$value["estado_mesa"].'</button>
                                 </div>
                              </div>';
                     }
@@ -71,7 +81,7 @@ MODAL PARA VER MESA
                                 </div>
                             </div>
                             <div class="col-md-4 row pull-right">
-                                <label id="totalPedido"></label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
+                                <label style="font-size: 16px;"><b>TOTAL: S/.</b></label><label id="lbl_totalMesa" style="font-size: 16px;"></label>
                             </div>
                         </div>
                         <br>
@@ -91,7 +101,8 @@ MODAL PARA VER MESA
                 PIE DEL MODAL
                 ======================================-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+                    <button id="btn_enviarCaja" type="button" class="btn btn-primary pull-right" onclick="enviarCaja()"><i class="fa fa-send "></i>&nbsp;&nbsp;Enviar a Caja</button>
                 </div>
             </form>
         </div>

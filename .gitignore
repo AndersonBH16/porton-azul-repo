@@ -6,3 +6,8 @@ docker-compose.yml
 p-a.mwb
 p-a.mwb.bak
 Modelo/conexion.php
+Vista/bower_components/colors2.0-bootstrap/
+Vista/wa.js
+Vista/wa.php
+nbproject/private/
+nbproject/private/private.xml
