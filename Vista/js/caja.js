@@ -2,42 +2,6 @@ $(document).ready(function(){
 
 } );
 
-$('#tipoComprobante').on('change' ,function(){
-    if($(this).val()==="1"){
-        $('.vistaComprobante').html(
-            '<div class="box box-info">\n\
-                <div class="box-body">\n\
-                    <div class="col-lg-12">\n\
-                        <div>\n\
-                            <p class="text-center" style="font-size: 18px;"><b>DETALLE DE BOLETA</b></p><br>\n\
-                        </div>\n\
-                        <div class="row">\n\
-                            <div class="col-lg-12">\n\
-                                <div class="col-lg-1">\n\
-                                    <p class="text-center"><b>Código</b></p>\n\
-                                </div>\n\
-                            <div class="col-lg-6">\n\
-                                <p class="text-center"><b>Descripción</b></p>\n\
-                            </div>\n\
-                            <div class="col-lg-2">\n\
-                                <p class="text-center"><b>Cantidad</b></p>\n\
-                            </div>\n\
-                            <div class="col-lg-3">\n\
-                                <p class="text-center"><b>Precio S/.</b></p>\n\
-                            </div>\n\
-                        </div>\n\
-                    </div>\n\
-                </div>\n\
-                <div class="box-footer">\n\
-                        <button class="btn btn-primary pull-right">Imprimir Comprobante</button>\n\
-                    </div>\n\
-            </div>'
-        );
-    }else if($(this).val()==="2"){
-        $('.vistaComprobante').html('<div><button class="btn btn-primary">Incluye!</button></div>');
-    }
-});
-
 
 function cerrarMesa(){
     alert("La mesa a cerrar es: "+ n_mesa);
@@ -212,3 +176,52 @@ function cerrarMesa(){
         }
     });
 }
+
+$("#botonGenerarComprobante").click(function(){
+    if (detalleMesa != null) {
+        $("#modalGenerarComprobante").modal("toggle");
+    }
+    else {
+        alert("Selecciona una mesa");
+    }
+});
+
+var comprobanteImprimir;
+
+$('#tipoComprobante').on('change' ,function(){
+    $("#botonImprimirComprobante").show();
+
+    if($(this).val() === "1") {
+        $('.vistaComprobante').html(
+            '<div class="input-group">' +
+                '<table class="table table-bordered table-striped dt-responsive tablaBoleta" width="100%">' +
+                    $('.tabla_caja').html() +
+                '</table>' +
+            '</div>'
+        );
+        var tablaCaja = $('.vistaComprobante').html() + "";
+        comprobanteImprimir = $.trim(tablaCaja.replace(/[\t\n]+/g,' '));
+    }
+    else if($(this).val() === "2") {
+        $('.vistaComprobante').html('<div><button class="btn btn-primary">Incluye!</button></div>');
+    }
+});
+
+$("#botonImprimirComprobante").click(function(){
+    var x = '<!doctype html>' +
+        '<html lang="en">' +
+            '<head>' +
+                '<meta charset="UTF-8">' +
+                '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">' +
+                '<meta http-equiv="X-UA-Compatible" content="ie=edge">' +
+                '<title>Comprobante | Portón Azul</title>' +
+            '</head>' +
+            '<body>' +
+                comprobanteImprimir +
+            '</body>' +
+        '</html>';
+
+    console.log(x);
+
+    window.open('Vista/modulos/contenido/comprobante.php?comprobante=' + x);
+});

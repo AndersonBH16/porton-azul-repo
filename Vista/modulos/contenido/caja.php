@@ -62,7 +62,7 @@
                                 <img class="img-responsive center-block" src="Vista/img/contenido/recepcion.png"><b>Imprimir Cuenta</b>
                             </button>
                             <div style="height: 50px;"></div>
-                            <button class="btn btn-outline btn-success center-block" data-toggle="modal" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
+                            <button id="botonGenerarComprobante" class="btn btn-outline btn-success center-block" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
                                 <img class="img-responsive center-block" src="Vista/img/contenido/impresora.png"><b>Generar Comprobante</b>
                             </button>
                             <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
@@ -81,21 +81,23 @@
                 <h4 class="modal-title">Generar Comprobante de Pago</h4>
             </div>
             <div class="modal-body">                                   
-                <form role="form" method="POST">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-list-alt"></i></span>                    
-                            <select id="tipoComprobante" class="form-control">
-                                <option value="">::SELECCIONE TIPO DE COMPROBANTE::</option>
-                                <option value="1">Boleta</option>
-                                <option value="2">Factura</option>
-                            </select>
-                        </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-list-alt"></i></span>
+                        <select id="tipoComprobante" class="form-control">
+                            <option value="">::SELECCIONE TIPO DE COMPROBANTE::</option>
+                            <option value="1">Boleta</option>
+                            <option value="2">Factura</option>
+                        </select>
                     </div>
-                    <div class="row vistaComprobante" >
-                    </div>                    
-                </form>
-            </div>            
+                </div>
+                <div class="form-group">
+                    <div class="vistaComprobante"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary pull-right" id="botonImprimirComprobante" style="display: none">Imprimir</button>
+            </div>
         </div>
     </div>
 </div>
