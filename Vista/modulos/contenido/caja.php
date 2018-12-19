@@ -9,7 +9,7 @@
         <section class="content-header" style="padding-left: 0; padding-top: 0;">
             <div  style="background: #400B0B; width: 40%; height: 40px;  left: 0; border: 2px solid #939807; border-left: none; border-top: none;">
                 <h1 style="font-size: 24px; color:#CACFD2; text-align: right; padding-right: 20px; padding-top: 10px;">
-                    <b>CAJA</b>                    
+                    <b>CAJA</b>        
                 </h1>
             </div>
         </section>        
@@ -58,16 +58,16 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="col-md-12">
-                            <button class="btn btn-outline btn-info center-block" style="width: 100%; border-color: #007fff; color: #000077;" id="botonImprimirTicketPago">
+                            <button class="btn btn-outline btn-info center-block" style="width: 100%; border-color: #007fff; color: #000077;" id="botonImprimirTicketPago" disabled>
                                 <img class="img-responsive center-block" src="Vista/img/contenido/recepcion.png"><b>Imprimir Cuenta</b>
                             </button>
                             <div style="height: 50px;"></div>
-                            <button id="botonGenerarComprobante" class="btn btn-outline btn-success center-block" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
+                            <button id="botonGenerarComprobante" class="btn btn-outline btn-success center-block" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;" disabled>
                                 <img class="img-responsive center-block" src="Vista/img/contenido/impresora.png"><b>Generar Comprobante</b>
                             </button>
                             <div class="row">
-                                <button type="button" class="btn bg-olive margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
-                                <button type="button" class="btn bg-navy margin pull-right" onclick="crearventa()">Enviar venta</button>
+                                <button id="btnCerrarMesa" type="button" class="btn bg-olive margin pull-left" onclick="cerrarMesa()" disabled>Cerrar mesa</button>
+                                <button id="btnCrearVenta" type="button" class="btn bg-navy margin pull-right" onclick="crearventa()" disabled>Enviar venta</button>
                             </div>
                         </div>
                     </div>

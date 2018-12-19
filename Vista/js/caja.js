@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    
 } );
 
 var detalleMesa;
@@ -24,6 +24,11 @@ $("#selectMesa").change(function(){
                 detalleMesa = respuesta;
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
                 var nombreMozo = respuesta['data'][productosPorPedido - 1].mozo;
+                
+                $("#botonImprimirTicketPago").prop('disabled', false);
+                $("#botonGenerarComprobante").prop('disabled', false);
+                $("#btnCerrarMesa").prop('disabled', false);
+                $("#btnCrearVenta").prop('disabled', false);
 
                 tablaDetalleMesa.DataTable({
                     "sPaginationType": "full_numbers",
@@ -53,6 +58,10 @@ $("#selectMesa").change(function(){
                 });
             }
             else {
+                $("#botonImprimirTicketPago").prop('disabled', true);
+                $("#botonGenerarComprobante").prop('disabled', true);
+                $("#btnCerrarMesa").prop('disabled', true);
+                $("#btnCrearVenta").prop('disabled', true);
                 tablaDetalleMesa.DataTable({
                     "paging": false,
                     "searching": false,
