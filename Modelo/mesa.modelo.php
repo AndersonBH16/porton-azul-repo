@@ -50,7 +50,7 @@
                                 producto.precio,
                                 personal.nombre_personal,
                                 pedido.sub_total,
-                                pedido.id_pedido
+                                mesa.estado_mesa
                         FROM mesa
                         INNER JOIN pedido
                         ON mesa.id_mesa = pedido.MESA_id_mesa
@@ -76,7 +76,7 @@
                     'precio' => $pedido->precio,
                     'nombre_mozo' => $pedido->nombre_personal,
                     'sub_total'=> $pedido->sub_total,
-                    'id_pedido'=> $pedido->id_pedido
+                    'estado_mesa' => $pedido->estado_mesa
                 ];
                 $i++;
                 array_push($nPedidos, $datos);
@@ -87,14 +87,19 @@
             return $retornoPedidos;
         }
         
-        public static function enviarCaja($id_pedido){
-            $consulta = "CALL sp_enviarCaja('$id_pedido')";
-            $statement = Conexion::Conectar()->prepare($consulta);
-            $statement->execute();
-            return $statement->fetch();
-            
-            $statement->close();
-            $statement = null;
+        public static function enviarCaja($id_mesa, $estado_mesa){
+            if($estado_mesa == "Ocupado"){
+                $consulta = "CALL sp_enviarCaja('$id_mesa')";
+                $statement = Conexion::Conectar()->prepare($consulta);
+                $statement->execute();
+                return $statement->fetch();
+
+                $statement->close();
+                $statement = null;
+            }
+            else {
+                return -1;
+            }
         }
     }
     

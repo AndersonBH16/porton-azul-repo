@@ -102,7 +102,7 @@ MODAL PARA VER MESA
                 ======================================-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-                    <button id="btn_enviarCaja" type="button" class="btn btn-primary pull-right" onclick="enviarCaja()"><i class="fa fa-send "></i>&nbsp;&nbsp;Enviar a Caja</button>
+                    <button id="btn_enviarCaja" type="button" class="btn btn-primary pull-right" onclick="enviarCaja()" disabled><i class="fa fa-send "></i>&nbsp;&nbsp;Enviar a Caja</button>
                 </div>
             </form>
         </div>

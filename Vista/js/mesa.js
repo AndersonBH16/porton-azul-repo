@@ -36,8 +36,8 @@ $('#agregarMesa').on('click', function(){
 });
 
 var n_mesa;
+var estado_mesa;
 
-var id_pedido;
 function verDetalleMesa(nro_mesa){
     n_mesa = nro_mesa;
     var dato_mesa = {"nro_mesa" : nro_mesa};
@@ -56,8 +56,10 @@ function verDetalleMesa(nro_mesa){
         success: function(respuesta) {
             if(respuesta['data'].length != 0) {
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
-                id_pedido = respuesta['data'][productosPorPedido - 1].id_pedido;
+                estado_mesa = respuesta['data'][productosPorPedido - 1].estado_mesa;
                 var subTotal = respuesta['data'][productosPorPedido - 1].sub_total;
+
+                $("#btn_enviarCaja").prop('disabled', false);
 
                 if (subTotal != null) {
                     mensajeSubTotal = subTotal; //capturamos el ultimo sub_total de todos los productoPorPedidos
@@ -114,23 +116,32 @@ function verDetalleMesa(nro_mesa){
 }
 
 function enviarCaja(){
-    var datos = {"id_pedido" : id_pedido};
+    var datos = {
+        "datos":
+            {
+                "id_mesa" : n_mesa,
+                "estado_mesa" : estado_mesa
+        }
+    };
+    console.log(datos);
     $.ajax({
         data: datos,
         method: "POST",
         url: "AjaxControladores/mesa.ajax.controlador.php",
         success: function(respuesta) {
-            
+            console.log(respuesta);
                 swal({
                         icon: "success",
                         type: "success",
                         title: "¡La cuenta se enviado ha correctamente!",
                         timer: 3000,
-                        showConfirmButton: false                          
+                        showConfirmButton: false
                         }).then(function(){
                             window.location = "mesas";
                     });
-            
+            if(respuesta == -1){
+                alert("No se puede enviar pedido si la mesa está desocupada.");
+            }
         }
     });
 }

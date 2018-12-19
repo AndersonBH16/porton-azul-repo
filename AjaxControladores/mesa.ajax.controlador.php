@@ -3,7 +3,9 @@
     require_once '../Modelo/mesa.modelo.php';
     
     class MesaAjaxControlador{
-        public $id_pedido;
+        public $id_mesa;
+        public $estado_mesa;
+
         public function ctrAjaxAgregarMesa(){
             $tabla = "mesa";
             $resultado = MesaModelo::agregarMesa($tabla);
@@ -25,8 +27,9 @@
         }
         
         public function ctrAjaxEnviarCaja(){
-            $idPedido = $this->id_pedido;
-            $resultado = MesaControlador::ctrEnviarCaja($idPedido);
+            $idMesa = $this->id_mesa;
+            $estadoMesa = $this->estado_mesa;
+            $resultado = MesaControlador::ctrEnviarCaja($idMesa, $estadoMesa);
             echo $resultado;
         }
     }
@@ -36,9 +39,10 @@
         if(isset($_POST['flag'])){
             $mesa = new MesaAjaxControlador();
             $mesa->ctrAjaxVerMesa();            
-        }else if(isset($_POST['id_pedido'])){
+        }else if(isset($_POST['datos'])){
             $mesa = new MesaAjaxControlador();
-            $mesa->id_pedido = $_POST['id_pedido'];
+            $mesa->id_mesa = $_POST['datos']['id_mesa'];
+            $mesa->estado_mesa = $_POST['datos']['estado_mesa'];
             $mesa->ctrAjaxEnviarCaja();
         }else{
             $mesa = new MesaAjaxControlador();

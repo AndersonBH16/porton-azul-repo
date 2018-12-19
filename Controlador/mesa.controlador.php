@@ -12,8 +12,8 @@
             echo $resultado;
         }
         
-        public static function ctrEnviarCaja($id_pedido){
-            $resultado = MesaModelo::enviarCaja($id_pedido);
+        public static function ctrEnviarCaja($id_mesa, $estado_mesa){
+            $resultado = MesaModelo::enviarCaja($id_mesa, $estado_mesa);
             return $resultado;
         }
     }
