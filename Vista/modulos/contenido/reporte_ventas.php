@@ -45,8 +45,9 @@
                         <td>2018-Ago-21</td>
                         <td>Jon Rucana</td>
                         <td>150.90</td>
-                        <td>
-                            <button class="btn btn-success botonAccion">+</button>
+                        <td style="text-align: center">
+                            <button class="btn btn-success botonAccionVer">Ver</button>
+                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,8 +57,9 @@
                         <td>2018-Junio-18</td>
                         <td>Edwin Monzón</td>
                         <td>220.0</td>
-                        <td>
-                            <button class="btn btn-success botonAccion">+</button>
+                        <td style="text-align: center">
+                            <button class="btn btn-success botonAccionVer">Ver</button>
+                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
                         </td>
                     </tr>
                     <tr>
@@ -67,8 +69,9 @@
                         <td>2018-Abril-20</td>
                         <td>Anderson Blas</td>
                         <td>158.30</td>
-                        <td>
-                            <button class="btn btn-success botonAccion">+</button>
+                        <td style="text-align: center">
+                            <button class="btn btn-success botonAccionVer">Ver</button>
+                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
                         </td>
                     </tr>
                     <tr>
@@ -78,8 +81,9 @@
                         <td>2017-Dic-17</td>
                         <td>Lui Valverde</td>
                         <td>70.20</td>
-                        <td>
-                            <button class="btn btn-success botonAccion">+</button>
+                        <td style="text-align: center">
+                            <button class="btn btn-success botonAccionVer">Ver</button>
+                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
                         </td>
                     </tr>
                     <tr>
@@ -89,8 +93,9 @@
                         <td>2017-Oct-24</td>
                         <td>Edu Villanueva</td>
                         <td>20.50</td>
-                        <td>
-                            <button class="btn btn-success botonAccion">+</button>
+                        <td style="text-align: center">
+                            <button class="btn btn-success botonAccionVer">Ver</button>
+                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
                         </td>
                     </tr>
                     </tbody>
