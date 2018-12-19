@@ -128,7 +128,7 @@
                             </div>                            
                         </div>
                         <div class="box-footer">
-                            <button id="crearVenta" class="btn btn-primary pull-right" name="btn_enviarPedido">Enviar Pedido</button>
+                            <button id="crearPedido" class="btn btn-primary pull-right" name="btn_enviarPedido">Enviar Pedido</button>
                         </div>
                     </div>
                 </div>

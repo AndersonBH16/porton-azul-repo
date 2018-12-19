@@ -13,12 +13,26 @@
             }else{
                 echo 0;
             }
-        }        
+        }
+        
+        public function crearVenta(){
+            $numeroMesa = $this->nro_mesa;
+            $respuesta = CajaControlador::ctrCrearVenta($numeroMesa);
+            if($respuesta['flagSP'] == 1){
+                echo 1;
+            }else{
+                echo 0;
+            }
+        }
     }
     
     if(isset($_POST['nro_mesa'])){
         $nuevaCaja = new Caja();
         $nuevaCaja->nro_mesa = $_POST['nro_mesa'];
         $nuevaCaja->cerrarMesa();
+    }else if($_POST['nro_mesaCrearVenta']){
+        $nuevaCaja = new Caja();
+        $nuevaCaja->nro_mesa = $_POST['nro_mesaCrearVenta'];
+        $nuevaCaja->crearVenta();
     }
 ?>

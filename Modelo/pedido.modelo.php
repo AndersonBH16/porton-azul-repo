@@ -26,7 +26,7 @@
                 $producto_cantidad = $fila["producto_cantidad"];
                 $pedido_id = $fila["pp_id_ultimoPedido"];
 
-                $consulta = "CALL sp_crear_pedido_pedido('$producto_cantidad', '$pedido_id', '$producto_id')";
+                $consulta = "CALL sp_crear_pedido_producto('$producto_cantidad', '$pedido_id', '$producto_id')";
                 $statement = Conexion::Conectar()->prepare($consulta);
 
                 if($statement->execute()){

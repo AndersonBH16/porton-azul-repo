@@ -172,8 +172,10 @@ function sumarPreciosProductosSeleccionados(){
     $('#totalPrecioProducto').val(sumaTotalPrecio.toFixed(2));
 }
 
+
+var idUltimoPedido;
 //
-$('#crearVenta').on('click', function(){
+$('#crearPedido').on('click', function(){
     //Para insertar en tabla Pedido
     var idMozo = $("#seleccioneEmpleado").val();
     var idMesa = $("#seleccioneMesa").val();
@@ -199,8 +201,9 @@ $('#crearVenta').on('click', function(){
       	data: datos_pedido,
       	dataType:"json",
       	success:function(respuesta_pedido){
+            debugger;
             //acá me retorna el id del ultimo pedido insertado para insertar en pedido_producto
-            var idUltimoPedido = respuesta_pedido;
+            idUltimoPedido = respuesta_pedido;
 
             for(var i = 0; i < cantidadFilas; i++){
                 array_pedido_producto.push({

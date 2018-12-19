@@ -65,7 +65,10 @@
                             <button id="botonGenerarComprobante" class="btn btn-outline btn-success center-block" data-target="#modalGenerarComprobante" data-dismiss="modal" style="width: 100%; border-color: #007fff; color: #000077;">
                                 <img class="img-responsive center-block" src="Vista/img/contenido/impresora.png"><b>Generar Comprobante</b>
                             </button>
-                            <button type="button" class="btn bg-navy margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
+                            <div class="row">
+                                <button type="button" class="btn bg-olive margin pull-left" onclick="cerrarMesa()">Cerrar mesa</button>
+                                <button type="button" class="btn bg-navy margin pull-right" onclick="crearventa()">Enviar venta</button>
+                            </div>
                         </div>
                     </div>
                 </div>

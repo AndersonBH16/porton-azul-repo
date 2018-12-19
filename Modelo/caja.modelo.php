@@ -12,7 +12,7 @@
             $statement = null;
         }
         
-        public function verDetalleMesaParaCaja($numeroMesa) {
+        public static function verDetalleMesaParaCaja($numeroMesa) {
             $consulta = "SELECT producto.nombre_producto,
                                 pedido_producto.cantidad,
                                 producto.precio,
@@ -54,6 +54,16 @@
                 "data" => $nPedidos
             ]);
             return $retornoPedidos;
+        }
+        
+        public static function mdlCrearVenta($nro_mesa){
+            $consulta = "CALL sp_crearVenta('$nro_mesa')";
+            $statement = Conexion::Conectar()->prepare($consulta);
+            $statement->execute();
+            return $statement->fetch();
+            
+            $statement->close();
+            $statement = null;
         }
     }
 ?>

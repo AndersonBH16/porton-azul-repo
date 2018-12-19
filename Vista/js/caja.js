@@ -2,11 +2,6 @@ $(document).ready(function(){
 
 } );
 
-
-function cerrarMesa(){
-    alert("La mesa a cerrar es: "+ n_mesa);
-}
-
 var detalleMesa;
 
 var numeroMesa;
@@ -224,3 +219,36 @@ $("#botonImprimirComprobante").click(function(){
 
     window.open('Vista/modulos/contenido/comprobante.php?comprobante=' + x);
 });
+
+function crearventa(){
+    var data = {"nro_mesaCrearVenta" : numeroMesa};
+    $.ajax({
+        data: data,
+        method: "POST",
+        url: "AjaxControladores/caja.ajax.controlador.php",
+        cache: false,
+        dataType: "json",
+        success: function(respuesta){
+            debugger;
+            if(respuesta == "1"){
+                swal({
+                        icon: "success",
+                        type: "success",
+                        title: "Se ha registrado la venta con Éxito",
+                        timer: 3000,
+                        showConfirmButton: false                          
+                        }).then(function(){
+                            window.location = "caja";
+                    });
+            }else{
+                swal({
+                        type: "error",
+                        title: "¡Error al registrar venta!",
+                        timer: 3000,
+                        text:'Verificar datos de Venta',
+                        showConfirmButton: true                          
+                        })
+            }         
+        }
+    });
+}
