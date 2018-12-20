@@ -51,6 +51,7 @@ function atenderPedido(nro_pedido_producto){
     var divHijo = '<div id="div'+nro_pedido_producto+'" style="margin:auto; display:none; width:30px; heigth:25px; cursor:pointer;"></div>';
     divPadre.append(divHijo);
     $('#div'+nro_pedido_producto+'').show();
+    $('#div'+nro_pedido_producto+'').css("cursor","pointer");
     var bar = new ProgressBar.Circle('#div'+nro_pedido_producto+'',{
          strokeWidth: 8,
          easing: 'easeInOut',
@@ -63,13 +64,14 @@ function atenderPedido(nro_pedido_producto){
     
     bar.animate(1.0);
     
+    var temporizador = setTimeout("enviarPedido("+nro_pedido_producto+")",3000);
+    
     $('#div'+nro_pedido_producto+'').on('click', function(){
+        clearTimeout(temporizador);
         $('#div'+nro_pedido_producto+'').remove();
-        $('#'+nro_pedido_producto+'').show('button');
-    });
+        $('#'+nro_pedido_producto+'').show('button');        
+    });        
     
-    
-    setTimeout("enviarPedido("+nro_pedido_producto+")",3000);
 }
 
 function enviarPedido(nro_pedido_producto){

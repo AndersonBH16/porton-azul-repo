@@ -147,7 +147,7 @@ $('#botonImprimirTicketPago').click(function(){
 
 function cerrarMesa(){
     alert("La mesa a cerrar es: "+ numeroMesa);
-    data = {"nro_mesa" : numeroMesa};    
+    var data = {"nro_mesa" : numeroMesa};    
     $.ajax({
         data: data,
         method: "POST",
@@ -230,9 +230,9 @@ $("#botonImprimirComprobante").click(function(){
 });
 
 function crearventa(){
-    var data = {"nro_mesaCrearVenta" : numeroMesa};
+    var dataVenta = {"nro_mesaCrearVenta" : numeroMesa};
     $.ajax({
-        data: data,
+        data: dataVenta,
         method: "POST",
         url: "AjaxControladores/caja.ajax.controlador.php",
         cache: false,
