@@ -55,7 +55,7 @@ function atenderPedido(nro_pedido_producto){
     var bar = new ProgressBar.Circle('#div'+nro_pedido_producto+'',{
          strokeWidth: 8,
          easing: 'easeInOut',
-         duration: 3000,
+         duration: 10000,
          color: '#F9AD1F',
          trailColor: '#eee',
          trailWidth: 1,
@@ -64,7 +64,7 @@ function atenderPedido(nro_pedido_producto){
     
     bar.animate(1.0);
     
-    var temporizador = setTimeout("enviarPedido("+nro_pedido_producto+")",3000);
+    var temporizador = setTimeout("enviarPedido("+nro_pedido_producto+")",10000);
     
     $('#div'+nro_pedido_producto+'').on('click', function(){
         clearTimeout(temporizador);

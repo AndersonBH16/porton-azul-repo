@@ -126,5 +126,16 @@
             $statement->close();
             $statement = null;
         }
+        
+        public static function mdlObtenerDatosPersonal($idPersonal){
+            $consulta = "CALL sp_obtenerPersonalXId($idPersonal)";
+            $statement = Conexion::Conectar()->prepare($consulta);
+            $statement->execute();
+            
+            return $statement->fetch();
+            
+            $statement->close();
+            $statement = null;
+        }
     }
 ?>

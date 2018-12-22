@@ -81,28 +81,32 @@ function crearPersonal(){
                     title: "¡El usuario ha sido guardado correctamente!",
                     showConfirmButton: false,
                     timer: 1000
-                    }).then(function(){
-                        window.location = "personal";                        
-                    });
+                }).then(function(){
+                    window.location = "personal";                        
+                });
             }            
         }
     });    
 }
 
-$('.tabla_personal').on('click','button.editarPersonal', function(){    
-    alert("Intentas Editar"+$(this).attr("id"));
-//    var id_personal = $(this).attr("id");
-//    
-//    datos_editar = {"id_personal" : id_personal};
-//    
-//    $.ajax({
-//        url:"AjaxControladores/personal_pedido.ajax.controlador.php",
-//      	method: "POST",
-//      	data: datos_editar,
-//      	success:function(respuesta){
-//            alert(respuesta['telefono']);
-//        }
-//    });
+$('.tabla_personal').on('click','button.editarPersonal', function(){
+    var id_personal = $(this).attr("id");    
+    var datos_editar = {"id_personal" : id_personal};
+    
+    $.ajax({
+        url:"AjaxControladores/personal.ajax.controlador.php",
+      	method: "POST",
+      	data: datos_editar,
+      	success:function(respuesta){
+            debugger;
+            var a = respuesta[1]["id_personal"];
+//            $('#modalAgregarPersonal').modal("show");
+            
+            
+//            $('#dni').val(respuesta['dni_personal']);
+//            $('#nombre').val(respuesta['nombre_personal']);
+        }
+    });
 });
 
 $('.tabla_personal').on('click','button.eliminarPersonal', function(){

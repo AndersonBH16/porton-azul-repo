@@ -1,5 +1,5 @@
 <?php
-    class PersonalControlador{        
+    class PersonalControlador{
         public static function ctrMostrarPersonalPerfil(){            
             $respuesta = PersonalModelo::mdlMostrarPersonalPerfil();            
             return $respuesta;
@@ -13,6 +13,11 @@
         
         public static function ctrMostrarArea(){
             $respuesta = PersonalModelo::mdlMostrarArea();
+            return $respuesta;
+        }
+        
+        public static function ctrObtenerDatosPersonal($idPersonal){
+            $respuesta = PersonalModelo::mdlObtenerDatosPersonal($idPersonal);
             return $respuesta;
         }
     }

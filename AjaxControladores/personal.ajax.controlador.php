@@ -33,6 +33,12 @@
                 echo "ERROR EN LA CREACIÓN DEL PERSONAL";
             }    
         }
+        
+        public function obtenerDatosPersonal(){
+            $idPersonal = $this->id_personal;            
+            $respuesta = PersonalControlador::ctrObtenerDatosPersonal($idPersonal);
+            echo json_encode($respuesta);
+        }
     }
 
     if(isset($_POST["dni"])){
@@ -44,5 +50,9 @@
         $nuevoPersonal->id_perfil = $_POST["id_perfil"];
         $nuevoPersonal->id_area = $_POST["id_area"];
         $nuevoPersonal->crearPersonal();
+    }else if(isset($_POST['id_personal'])){
+        $editarPersonal = new PersonalAjax();
+        $editarPersonal->id_personal = $_POST['id_personal'];
+        $editarPersonal->obtenerDatosPersonal();
     }
 ?>
