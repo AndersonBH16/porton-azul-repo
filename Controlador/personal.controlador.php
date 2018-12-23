@@ -18,7 +18,7 @@
         
         public static function ctrObtenerDatosPersonal($idPersonal){
             $respuesta = PersonalModelo::mdlObtenerDatosPersonal($idPersonal);
-            return $respuesta;
+            echo $respuesta;
         }
     }
 ?>

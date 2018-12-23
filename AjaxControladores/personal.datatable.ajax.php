@@ -10,10 +10,10 @@
             
             foreach($resultado_tablaPersonal as $key => $value){
                 $botones = '<div class=\"btn-group\">'
-                                . '<button id=\"'.$value["id_personal"].'\" class=\"btn btn-warning editarPersonal\" title=\"Editar\">'
+                                . '<button class=\"btn btn-warning editarPersonal\" onclick=\"editarPersonal('.$value["id_personal"].')\" title=\"Editar\">'
                                     . '<i class=\"fa fa-pencil\"></i>'
                                 . '</button>'
-                                . '<button id=\"'.$value["id_personal"].'\" class=\"btn btn-danger eliminarPersonal\" title=\"Eliminar\">'
+                                . '<button class=\"btn btn-danger eliminarPersonal\" title=\"Eliminar\">'
                                     . '<i class=\"fa fa-times\"></i>'
                                 . '</button>'
                             . '</div>';

@@ -46,7 +46,18 @@ $('.tabla_personal').DataTable({
                     }
 });
 
-function crearPersonal(){
+$('#btn_abrirModal').click(function(){
+    $('#modalAgregarPersonal').modal('toggle');
+    $('#title_modal').text('Crear personal');
+    $('#btnGuardarPersonal').text('Guardar');
+
+    //Eliminar datos si existieran
+    $('#dni').val("");
+    $('#nombre').val("");
+    $('#sel_perfil').val("");
+});
+
+function crearPersonal(){    
     var dni = $('#dni').val();
     var nombre = $('#nombre').val();
     var telefono = $('#telefono').val();
@@ -89,8 +100,11 @@ function crearPersonal(){
     });    
 }
 
-$('.tabla_personal').on('click','button.editarPersonal', function(){
-    var id_personal = $(this).attr("id");    
+function editarPersonal(id_personal){
+    $('#modalAgregarPersonal').modal('toggle');
+    $('#title_modal').text('Modificar Personal');
+    $('#btnGuardarPersonal').text('Actualizar');
+    
     var datos_editar = {"id_personal" : id_personal};
     
     $.ajax({
@@ -98,16 +112,15 @@ $('.tabla_personal').on('click','button.editarPersonal', function(){
       	method: "POST",
       	data: datos_editar,
       	success:function(respuesta){
-            debugger;
-            var a = respuesta[1]["id_personal"];
-//            $('#modalAgregarPersonal').modal("show");
-            
-            
-//            $('#dni').val(respuesta['dni_personal']);
-//            $('#nombre').val(respuesta['nombre_personal']);
+            var datos = JSON.parse(respuesta);
+            console.log(datos);
+
+            $('#dni').val(datos[0].dni_personal);
+            $('#nombre').val(datos[0].nombre_personal);
+            $('#sel_perfil').val(datos[0].nombre_perfil);
         }
     });
-});
+}
 
 $('.tabla_personal').on('click','button.eliminarPersonal', function(){
     alert("Intentas Eliminar"+$(this).attr("id"));

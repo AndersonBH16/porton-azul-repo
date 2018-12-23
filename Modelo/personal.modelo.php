@@ -73,13 +73,6 @@
             $statement = null;
         }
         
-        
-        
-        
-        
-        
-        
-        
         public static function mdlCrearPersonal($dni,$nombre,$telefono,$direccion){
             $consulta = "INSERT INTO PERSONAL (id_personal, dni_personal,nombre_personal, telefono, foto, direccion, fecha_creacion, fecha_modificacion) VALUES (null,'$dni','$nombre','$telefono',null,'$direccion',null,null)";
             $statement = Conexion::Conectar()->prepare($consulta);
@@ -132,7 +125,7 @@
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
             
-            return $statement->fetch();
+            return json_encode($statement->fetchAll(PDO::FETCH_CLASS));
             
             $statement->close();
             $statement = null;

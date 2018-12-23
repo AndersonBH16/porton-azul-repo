@@ -1,5 +1,4 @@
 <?php
-    require_once '../AjaxControladores/personal.datatable.ajax.php';
     require_once '../Controlador/personal.controlador.php';
     require_once '../Modelo/personal.modelo.php';
     
@@ -37,7 +36,7 @@
         public function obtenerDatosPersonal(){
             $idPersonal = $this->id_personal;            
             $respuesta = PersonalControlador::ctrObtenerDatosPersonal($idPersonal);
-            echo json_encode($respuesta);
+            echo $respuesta;
         }
     }
 

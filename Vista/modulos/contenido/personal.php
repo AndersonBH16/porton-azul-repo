@@ -17,7 +17,7 @@
     <section class="content">
         <div class="box">
             <div class="box-header with-border">                
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPersonal"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Nuevo</button>
+                <button id="btn_abrirModal" class="btn btn-primary" data-toggle="modal"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Nuevo</button>
             </div>
             <div class="box-body">                
                 <table class="table table-bordered table-striped dt-responsive tabla_personal" width="100%">
@@ -51,7 +51,7 @@ MODAL PARA AGREGAR NUEVO PERSONAL
                 ======================================-->
                 <div class="modal-header" style="background:#3c8dbc; color:white">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Agregar personal</h4>
+                    <h4 id="title_modal" class="modal-title"></h4>
                 </div>
                 <!--=====================================
                 CUERPO DEL MODAL
@@ -132,7 +132,7 @@ MODAL PARA AGREGAR NUEVO PERSONAL
                 ======================================-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-                    <button type="button" class="btn btn-primary" onclick="crearPersonal()">Guardar</button>
+                    <button id="btnGuardarPersonal" type="button" class="btn btn-primary" onclick="crearPersonal()"></button>
                 </div>
             </form>
         </div>
