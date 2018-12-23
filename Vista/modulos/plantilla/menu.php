@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="pedido">
+                    <a href="pedido" id="linkPedido">
                         <i class="fa fa-list-alt"></i>
                         <span>Pedido</span>
                     </a>

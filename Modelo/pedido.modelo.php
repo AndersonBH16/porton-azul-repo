@@ -24,7 +24,7 @@
             foreach ($array_pedido_producto as $fila) {
                 $producto_id = $fila["producto_id"];
                 $producto_cantidad = $fila["producto_cantidad"];
-                $pedido_id = $fila["pp_id_ultimoPedido"];
+                $pedido_id = $fila["pedido_id"];
 
                 $consulta = "CALL sp_crear_pedido_producto('$producto_cantidad', '$pedido_id', '$producto_id')";
                 $statement = Conexion::Conectar()->prepare($consulta);

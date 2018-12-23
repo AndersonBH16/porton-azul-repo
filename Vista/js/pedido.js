@@ -1,6 +1,24 @@
-$(document).ready(function(){
+var idPedidoLocal;
+var idMozoLocal;
+var idMesaLocal;
 
-} );
+$(document).ready(function(){
+    if(window.location.pathname == "/pedido"){
+        idPedidoLocal = sessionStorage.getItem("idPedido");
+        idMozoLocal = sessionStorage.getItem("idMozo");
+        idMesaLocal = sessionStorage.getItem("idMesa");
+
+        if(idMesaLocal != "nada") {
+            $("#seleccioneMesa").val(idMesaLocal);
+            $("#seleccioneMesa").prop("disabled", true);
+        }
+
+        if(idMozoLocal != "nada"){
+            $("#seleccioneEmpleado").val(idMozoLocal);
+            $("#crearPedido").text("Añadir a pedido");
+        }
+    }
+});
 
 $('.tabla_menu_pedido').DataTable({    
     "bDeferRender": true,
@@ -175,6 +193,86 @@ function sumarPreciosProductosSeleccionados(){
 
 var idUltimoPedido;
 //
+
+function crearPedidoProducto(datos){
+    $.ajax({
+        url:"AjaxControladores/pedido-producto.ajax.controlador.php",
+        method:"POST",
+        data: {
+            misPedidos: datos
+        },
+        success:function(respuesta_pedido_producto){
+            swal({
+                icon: "success",
+                type: "success",
+                title: "¡El pedido ha sido enviado correctamente!",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(function(result){
+
+                window.location = "pedido";
+
+            });
+        },
+        error: function(xhr, ajaxOptions, thrownError, error) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            swal({
+                icon: "error",
+                type: "error",
+                title: "El Pedido no se ha podido enviar !",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(function(result){
+                if(result.value){
+                    window.location = "pedido";
+                }
+            });
+        }
+    });
+}
+
+function crearPedidoProducto(datos){
+    $.ajax({
+        url:"AjaxControladores/pedido-producto.ajax.controlador.php",
+        method:"POST",
+        data: {
+            misPedidos: datos
+        },
+        success:function(respuesta_pedido_producto){
+            sessionStorage.setItem("idPedido", "nada");
+            sessionStorage.setItem("idMozo", "nada");
+
+            swal({
+                icon: "success",
+                type: "success",
+                title: "¡El pedido ha sido enviado correctamente!",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(function(result){
+
+                window.location = "pedido";
+
+            });
+        },
+        error: function(xhr, ajaxOptions, thrownError, error) {
+            console.log(xhr.status);
+            console.log(thrownError);
+            swal({
+                icon: "error",
+                type: "error",
+                title: "El Pedido no se ha podido enviar !",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(function(result){
+                if(result.value){
+                    window.location = "pedido";
+                }
+            });
+        }
+    });
+}
+
 $('#crearPedido').on('click', function(){
     //Para insertar en tabla Pedido
     var idMozo = $("#seleccioneEmpleado").val();
@@ -194,60 +292,43 @@ $('#crearPedido').on('click', function(){
     var arrayProductosCantidad = $(".productoCantidad"); //obtiene todos los elementos de la clase .productoCantidades
     var cantidadFilas = arrayProductosId.length; //para obtener el numero de filas a insertar
     var array_pedido_producto = []; //para agrupar productos y respectivas cantidades
-    
-    $.ajax({
-        url:"AjaxControladores/pedido.ajax.controlador.php",
-      	method: "POST",
-      	data: datos_pedido,
-      	dataType:"json",
-      	success:function(respuesta_pedido){
-            debugger;
-            //acá me retorna el id del ultimo pedido insertado para insertar en pedido_producto
-            idUltimoPedido = respuesta_pedido;
 
-            for(var i = 0; i < cantidadFilas; i++){
-                array_pedido_producto.push({
-                    "producto_id" : arrayProductosId[i]["value"],
-                    "producto_cantidad" : arrayProductosCantidad[i]["value"],
-                    "pp_id_ultimoPedido": idUltimoPedido
-                });
-            }
+    console.log("idPedidoLocal: \'" + idPedidoLocal + "\'");
+    if(idPedidoLocal == "nada"){
+        alert("Voy a crear un nuevo Pedido y un nuevo PedidoProducto");
+        $.ajax({
+            url:"AjaxControladores/pedido.ajax.controlador.php",
+            method: "POST",
+            data: datos_pedido,
+            dataType:"json",
+            success:function(respuesta_pedido){
+                //acá me retorna el id del ultimo pedido insertado para insertar en pedido_producto
+                idUltimoPedido = respuesta_pedido;
 
-            $.ajax({
-                url:"AjaxControladores/pedido-producto.ajax.controlador.php",
-                method:"POST",
-                data: {
-                    misPedidos: array_pedido_producto
-                },
-                success:function(respuesta_pedido_producto){
-                    swal({
-                            icon: "success",
-                            type: "success",
-                            title: "¡El pedido ha sido enviado correctamente!",
-                            timer: 1500,
-                            showConfirmButton: false                          
-                            }).then(function(result){
-                            
-                                window.location = "pedido";
-                            
-                        });
-                },
-                error: function(xhr, ajaxOptions, thrownError, error) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                    swal({
-                        icon: "error",
-                        type: "error",
-                        title: "El Pedido no se ha podido enviar !",
-                        timer: 1500,
-                        showConfirmButton: false
-                        }).then(function(result){
-                                    if(result.value){
-                                            window.location = "pedido";
-                                    }
-                            });
+                for(var i = 0; i < cantidadFilas; i++){
+                    array_pedido_producto.push({
+                        "producto_id" : arrayProductosId[i]["value"],
+                        "producto_cantidad" : arrayProductosCantidad[i]["value"],
+                        "pedido_id": idUltimoPedido
+                    });
                 }
+
+                crearPedidoProducto(array_pedido_producto);
+            }
+        });
+    }
+    else {
+        alert("Voy a crear solo un nuevo PedidoProducto de un Pedido existente");
+        var datos = [];
+
+        for(var i = 0; i < cantidadFilas; i++){
+            datos.push({
+                "producto_id" : arrayProductosId[i]["value"],
+                "producto_cantidad" : arrayProductosCantidad[i]["value"],
+                "pedido_id": idPedidoLocal
             });
         }
-    });
+
+        crearPedidoProducto(datos);
+    }
 });

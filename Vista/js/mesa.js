@@ -55,6 +55,10 @@ function verDetalleMesa(nro_mesa){
         dataType: "json",
         success: function(respuesta) {
             if(respuesta['data'].length != 0) {
+                sessionStorage.setItem("idPedido", respuesta['data'][0].id_pedido);
+                sessionStorage.setItem("idMozo", respuesta['data'][0].id_mozo);
+                sessionStorage.setItem("idMesa", n_mesa);
+
                 var productosPorPedido = respuesta['data'].length; //capturamos la cantidad de productos por pedido
                 estado_mesa = respuesta['data'][productosPorPedido - 1].estado_mesa;
                 var subTotal = respuesta['data'][productosPorPedido - 1].sub_total;
@@ -95,6 +99,9 @@ function verDetalleMesa(nro_mesa){
                 });
             }
             else {
+                sessionStorage.setItem("idPedido", "nada");
+                sessionStorage.setItem("idMozo", "nada");
+                sessionStorage.setItem("idMesa", n_mesa);
                 tablaDetalleMesa.DataTable({
                     "paging": false,
                     "searching": false,
@@ -144,6 +151,14 @@ function enviarCaja(){
             }
         }
     });
+}
+
+if(window.location.pathname == "/mesas"){
+    $("#linkPedido").click(function() {
+        sessionStorage.setItem("idPedido", "nada");
+        sessionStorage.setItem("idMozo", "nada");
+        sessionStorage.setItem("idMesa", "nada");
+    })
 }
 
 

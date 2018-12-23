@@ -48,9 +48,11 @@
             $consulta = "SELECT producto.nombre_producto,
                                 pedido_producto.cantidad,
                                 producto.precio,
+                                personal_perfil.id_personal_perfil,
                                 personal.nombre_personal,
                                 pedido.sub_total,
-                                mesa.estado_mesa
+                                mesa.estado_mesa,
+                                pedido.id_pedido
                         FROM mesa
                         INNER JOIN pedido
                         ON mesa.id_mesa = pedido.MESA_id_mesa
@@ -74,9 +76,11 @@
                     'plato' => $pedido->nombre_producto,
                     'cantidad' => $pedido->cantidad,
                     'precio' => $pedido->precio,
+                    'id_mozo' => $pedido->id_personal_perfil,
                     'nombre_mozo' => $pedido->nombre_personal,
                     'sub_total'=> $pedido->sub_total,
-                    'estado_mesa' => $pedido->estado_mesa
+                    'estado_mesa' => $pedido->estado_mesa,
+                    'id_pedido' => $pedido->id_pedido
                 ];
                 $i++;
                 array_push($nPedidos, $datos);
