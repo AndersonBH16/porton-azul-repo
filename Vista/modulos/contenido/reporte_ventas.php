@@ -37,68 +37,6 @@
                             <th style="width: 20px;">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>BOL-001</td>
-                        <td>Manuel Pérez</td>
-                        <td>2018-Ago-21</td>
-                        <td>Jon Rucana</td>
-                        <td>150.90</td>
-                        <td style="text-align: center">
-                            <button class="btn btn-success botonAccionVer">Ver</button>
-                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>BOL-002</td>
-                        <td>Mauricio Arréstegui</td>
-                        <td>2018-Junio-18</td>
-                        <td>Edwin Monzón</td>
-                        <td>220.0</td>
-                        <td style="text-align: center">
-                            <button class="btn btn-success botonAccionVer">Ver</button>
-                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>BOL-003</td>
-                        <td>Jorge Gamboa</td>
-                        <td>2018-Abril-20</td>
-                        <td>Anderson Blas</td>
-                        <td>158.30</td>
-                        <td style="text-align: center">
-                            <button class="btn btn-success botonAccionVer">Ver</button>
-                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>BOL-004</td>
-                        <td>Gianpier Nizama</td>
-                        <td>2017-Dic-17</td>
-                        <td>Lui Valverde</td>
-                        <td>70.20</td>
-                        <td style="text-align: center">
-                            <button class="btn btn-success botonAccionVer">Ver</button>
-                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>BOL-005</td>
-                        <td>Juanchico</td>
-                        <td>2017-Oct-24</td>
-                        <td>Edu Villanueva</td>
-                        <td>20.50</td>
-                        <td style="text-align: center">
-                            <button class="btn btn-success botonAccionVer">Ver</button>
-                            <button class="btn btn-warning botonAccionImprimir">Imprimir</button>
-                        </td>
-                    </tr>
-                    </tbody>
                 </table>
             </div>
         </div>
