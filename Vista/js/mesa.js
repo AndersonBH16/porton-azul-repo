@@ -7,26 +7,21 @@ function agregarMesa(){
         url: 'AjaxControladores/mesa.ajax.controlador.php',
         method: 'POST',
         success: function(respuesta){
-//           var idMesa;
-//           var estadoMesa;
-//           var i = 0;
-//            $(respuesta).each(function(key, value){
-//                console.log("i: " + i);
-//                idMesa = value.idUltimaMesa;
-//                estadoMesa = value.estadoMesa;
-//            });
-//            console.log("idMesa: " + idMesa + "\n estadoMesa: " + estadoMesa);
+            respuesta = JSON.parse(respuesta);
+            var idMesa = respuesta[0].numero_mesa;
+            var estadoMesa = respuesta[0].estado_mesa;
+
             var imagen_mesa = $("#mesa");
-            var nueva_imagen_mesa = '<div style="display: inline-block; margin:2%; width: 180px; height:230px; background: rgba(34, 45, 45, 0.5); padding:10px;">\n\
-                                        <input id="nro_mesa" style="font-size:18px; text-align:center; width:55px; color:#F9F902; background:rgba(64, 11, 11, 0.8); left: 0; border: none;" value="N°: '+ respuesta +'" disabled>\n\
-                                        <a href="#">\n\
-                                            <img class="img-responsive" src="Vista/img/contenido/mesa.png" style="width:100%; height:70%; margin:0; padding:0;">\n\
-                                        </a>\n\
-                                        <div clas="col-md-8">\n\
-                                            <button class="btn btn-success" style="margin-left:23%;"></button>\n\
-                                        </div>\n\
-                                    </div>';
-            imagen_mesa.append(nueva_imagen_mesa);            
+            var nueva_imagen_mesa = '<div style="display: inline-block; margin:2%; width: 180px; height:230px; background: rgba(34, 45, 45, 0.5); padding:10px;">' +
+                                        '<input id="nro_mesa" style="font-size:18px; text-align:center; width:55px; color:#F9F902; background:rgba(64, 11, 11, 0.8); left: 0; border: none;" value="N°: '+ idMesa +'" disabled>' +
+                                        '<a id="' + idMesa + '" data-toggle="modal" data-target="#modalVerDetalleMesa" onclick="verDetalleMesa(' + idMesa + ')" title="Ver Mesa" style="cursor:pointer">' +
+                                            '<img class="img-responsive" src="Vista/img/contenido/mesa.png" style="width:100%; height:70%; margin:0; padding:0;">' +
+                                        '</a>' +
+                                        '<div clas="col-md-8">' +
+                                            '<button class="btn btn-success" style="margin-left:23%;">' + estadoMesa + '</button>'+
+                                        '</div>' +
+                                    '</div>';
+            imagen_mesa.append(nueva_imagen_mesa);
         }
     });
 }

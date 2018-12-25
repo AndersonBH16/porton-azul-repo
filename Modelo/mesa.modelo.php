@@ -20,12 +20,12 @@
             return $statement->fetch()[0];
         }
         
-        public static function devolverNumeroMesa($tabla){
+        public static function devolverNumeroEstadoMesa($tabla){
             $ultimo_nroMesa = MesaModelo::ultimaMesaAgregada($tabla);
-            $consulta = "SELECT numero_mesa FROM $tabla WHERE numero_mesa = $ultimo_nroMesa";
+            $consulta = "SELECT numero_mesa, estado_mesa FROM $tabla WHERE numero_mesa = $ultimo_nroMesa";
             $statement = Conexion::Conectar()->prepare($consulta);
             $statement->execute();
-            return $statement->fetch()[0];
+            return $statement->fetchAll(PDO::FETCH_CLASS);
         }
         
         public static function devolverEstadoMesa($tabla){

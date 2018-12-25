@@ -9,16 +9,8 @@
         public function ctrAjaxAgregarMesa(){
             $tabla = "mesa";
             $resultado = MesaModelo::agregarMesa($tabla);
-            $numeroMesa = MesaModelo::devolverNumeroMesa($tabla);
-            echo $numeroMesa;
-//            $estadoMesa = MesaModelo::devolverEstadoMesa($tabla);
-//            $return = [];
-//            $retorno = [
-//                "idUltimaMesa" => $ultimaMesa,
-//                "estadoMesa" => $estadoMesa
-//            ];
-//            array_push($return, $retorno);
-//            return $numeroMesa;
+            $datosMesa = MesaModelo::devolverNumeroEstadoMesa($tabla);
+            echo json_encode($datosMesa);
         }
         
         public function ctrAjaxVerMesa(){
